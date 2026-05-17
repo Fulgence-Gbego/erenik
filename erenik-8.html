@@ -1,0 +1,981 @@
+<!DOCTYPE html>
+<html lang="fr" id="html-root">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>ÉRÉNIK — Rencontres Amoureuses Mondiales</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,400;1,600&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#06040A;--ink2:#100D18;--ink3:#1C1728;
+  --rose:#B5445A;--rose2:#D4687E;--rose3:#F0A0B2;
+  --gold:#C8952A;--gold2:#E0B44A;--gold3:#F5D98A;
+  --violet:#7B4FA6;--violet2:#A07ACC;
+  --teal:#2A9D8F;--teal2:#4EC9BA;
+  --text:#EDE4D4;--muted:#8A8090;
+  --border:rgba(200,149,42,0.2);--card:rgba(255,255,255,0.04);
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:'Jost',sans-serif;background:var(--ink);color:var(--text);overflow-x:hidden;-webkit-font-smoothing:antialiased;padding-bottom:62px}
+a{text-decoration:none;color:inherit}
+button{font-family:'Jost',sans-serif;cursor:pointer}
+
+/* ══ LOGO ══ */
+.logo-wrap{display:inline-flex;align-items:center;gap:11px}
+.logo-wordmark{display:flex;flex-direction:column;line-height:1}
+.logo-name{font-family:'Cormorant Garamond',serif;font-weight:600;letter-spacing:0.14em;background:linear-gradient(110deg,var(--gold3),var(--gold2),var(--rose2),var(--rose3));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.logo-sub{font-size:0.44rem;letter-spacing:0.28em;text-transform:uppercase;color:var(--muted);margin-top:2px}
+
+/* ══ LANG SCREEN ══ */
+.lang-screen{position:fixed;inset:0;z-index:9999;background:var(--ink);display:flex;flex-direction:column;align-items:center;justify-content:center;padding:24px;text-align:center}
+.lang-screen.hidden{display:none}
+.ls-name{font-family:'Cormorant Garamond',serif;font-weight:600;font-size:clamp(2.2rem,8vw,3.2rem);letter-spacing:0.14em;background:linear-gradient(110deg,var(--gold3),var(--gold2),var(--rose2));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;margin-top:14px}
+.ls-sub{font-size:0.62rem;letter-spacing:0.25em;text-transform:uppercase;color:var(--muted);margin-top:5px}
+.ls-title{font-family:'Cormorant Garamond',serif;font-size:1.3rem;font-weight:300;margin:22px 0 6px}
+.ls-desc{font-size:0.78rem;color:var(--muted);margin-bottom:22px}
+.lang-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;width:100%;max-width:380px}
+.lang-btn{padding:13px 14px;background:var(--card);border:1px solid var(--border);color:var(--text);font-family:'Jost',sans-serif;font-size:0.85rem;display:flex;align-items:center;gap:10px;cursor:pointer;transition:all .25s}
+.lang-btn:hover{border-color:var(--gold2);color:var(--gold2)}
+.lname{display:flex;flex-direction:column;line-height:1.3;text-align:left}
+.lnative{font-size:0.86rem}
+.llocal{font-size:0.62rem;color:var(--muted)}
+
+/* ══ NAV ══ */
+.nav{position:fixed;top:0;left:0;right:0;z-index:998;display:flex;align-items:center;justify-content:space-between;padding:0 16px;height:58px;background:rgba(6,4,10,0.94);backdrop-filter:blur(24px);-webkit-backdrop-filter:blur(24px);border-bottom:1px solid var(--border)}
+.nav .logo-name{font-size:1.3rem}
+.nav-r{display:flex;gap:8px;align-items:center}
+.nb{padding:8px 14px;font-size:0.7rem;font-weight:600;letter-spacing:0.09em;text-transform:uppercase;border:none;transition:all .25s;line-height:1}
+.nb-out{background:transparent;color:var(--gold2);border:1px solid rgba(200,149,42,0.35)}
+.nb-in{background:linear-gradient(135deg,var(--rose),var(--rose2));color:#fff}
+.nb-out:hover{background:rgba(200,149,42,0.1)}
+.nb-in:hover{opacity:0.88}
+.flag-btn{background:none;border:1px solid var(--border);padding:6px 10px;font-size:1.1rem;cursor:pointer}
+
+/* ══ HERO ══ */
+.hero{min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:76px 22px 52px;text-align:center;position:relative;overflow:hidden}
+.hero-bg{position:absolute;inset:0;pointer-events:none;background:radial-gradient(ellipse 110% 60% at 50% -5%,rgba(181,68,90,0.3) 0%,transparent 62%),radial-gradient(ellipse 70% 50% at 95% 95%,rgba(200,149,42,0.15) 0%,transparent 55%)}
+.petals{position:absolute;inset:0;overflow:hidden;pointer-events:none}
+.petal{position:absolute;opacity:0;animation:riseUp linear infinite}
+@keyframes riseUp{0%{transform:translateY(105vh) rotate(0deg);opacity:0}8%{opacity:0.5}88%{opacity:0.2}100%{transform:translateY(-8vh) rotate(360deg);opacity:0}}
+.hero-logo-wrap{margin-bottom:28px;animation:fadeUp .9s ease both}
+.hero-logo-wrap .logo-wrap{flex-direction:column;align-items:center;gap:14px}
+.hero-logo-wrap .logo-wordmark{align-items:center}
+.hero-logo-wrap .logo-name{font-size:clamp(2rem,7vw,3.5rem)}
+.hero-logo-wrap .logo-sub{font-size:0.6rem;text-align:center;margin-top:5px}
+.hero-h1{font-family:'Cormorant Garamond',serif;font-size:clamp(1.9rem,7.5vw,4rem);font-weight:400;line-height:1.15;margin-bottom:20px;animation:fadeUp .9s .12s ease both}
+.hero-h1 em{color:var(--rose3);font-style:italic}
+.hero-desc{font-size:clamp(0.85rem,2.8vw,0.96rem);color:var(--muted);line-height:1.9;max-width:430px;margin:0 auto 36px;font-weight:300;animation:fadeUp .9s .22s ease both}
+@keyframes fadeUp{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:none}}
+.hero-btns{display:flex;flex-direction:column;gap:12px;width:100%;max-width:280px;margin:0 auto;animation:fadeUp .9s .32s ease both}
+.btn-main{padding:16px;border:none;color:#fff;font-family:'Jost',sans-serif;font-size:0.86rem;font-weight:600;letter-spacing:0.13em;text-transform:uppercase;background:linear-gradient(135deg,var(--rose),var(--rose2),var(--gold));background-size:200%;animation:gshift 4s ease infinite;box-shadow:0 6px 28px rgba(181,68,90,0.4);transition:transform .3s}
+.btn-main:hover{transform:translateY(-2px)}
+@keyframes gshift{0%{background-position:0%}50%{background-position:100%}100%{background-position:0%}}
+.btn-ghost{padding:14px;background:transparent;color:var(--text);border:1px solid rgba(237,228,212,0.22);font-family:'Jost',sans-serif;font-size:0.86rem;font-weight:500;letter-spacing:0.1em;text-transform:uppercase;transition:all .3s}
+.btn-ghost:hover{border-color:var(--gold2);color:var(--gold2)}
+.hero-stats{display:grid;grid-template-columns:repeat(4,1fr);width:100%;max-width:420px;margin-top:42px;border:1px solid var(--border);animation:fadeUp .9s .42s ease both}
+.st{padding:13px 6px;text-align:center;border-right:1px solid var(--border)}
+.st:last-child{border-right:none}
+.st-n{font-family:'Cormorant Garamond',serif;font-size:1.35rem;font-weight:600;color:var(--gold2);display:block}
+.st-l{font-size:0.55rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--muted);display:block}
+
+/* ══ FLAMME ══ */
+.flamme-sec{background:linear-gradient(135deg,var(--ink2),var(--ink3));border-top:1px solid var(--border);border-bottom:1px solid var(--border);padding:54px 22px;text-align:center;position:relative;overflow:hidden}
+.flamme-sec::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 80% 60% at 50% 50%,rgba(181,68,90,0.15),transparent 70%)}
+.flamme-badge{display:inline-flex;align-items:center;gap:8px;padding:7px 16px;margin-bottom:18px;background:rgba(181,68,90,0.15);border:1px solid rgba(181,68,90,0.4);font-size:0.65rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--rose3);position:relative}
+.flamme-h2{font-family:'Cormorant Garamond',serif;font-size:clamp(1.8rem,6vw,3rem);font-weight:400;margin-bottom:14px;position:relative}
+.flamme-h2 em{color:var(--gold2);font-style:italic}
+.flamme-desc{font-size:0.88rem;color:var(--muted);line-height:1.9;max-width:480px;margin:0 auto 30px;font-weight:300;position:relative}
+.flamme-card{background:rgba(255,255,255,0.04);border:1px solid rgba(181,68,90,0.4);padding:24px 18px;max-width:320px;margin:0 auto 26px;animation:pulseb 3s ease-in-out infinite;position:relative}
+@keyframes pulseb{0%,100%{border-color:rgba(181,68,90,0.35)}50%{border-color:rgba(181,68,90,0.8)}}
+.flamme-icon{font-size:2.8rem;margin-bottom:12px;animation:fp 2s ease-in-out infinite;display:block}
+@keyframes fp{0%,100%{transform:scale(1)}50%{transform:scale(1.12)}}
+.fn-box{background:var(--ink);border:1px solid var(--gold2);padding:16px;margin-top:14px;text-align:left}
+.fn-top{font-size:0.62rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--gold2);margin-bottom:7px}
+.fn-title{font-family:'Cormorant Garamond',serif;font-size:1.05rem;margin-bottom:5px}
+.fn-pct{font-size:1.9rem;font-weight:600;color:var(--rose2);font-family:'Cormorant Garamond',serif;display:block}
+.fn-sub{font-size:0.73rem;color:var(--muted);margin-bottom:12px}
+.fn-btn{width:100%;padding:11px;background:linear-gradient(135deg,var(--rose),var(--gold));color:#fff;font-family:'Jost',sans-serif;font-size:0.76rem;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;border:none;cursor:pointer}
+.flamme-steps{display:grid;grid-template-columns:1fr;gap:10px;max-width:460px;margin:0 auto;position:relative}
+.fs{display:flex;gap:13px;padding:14px;background:var(--card);border:1px solid var(--border);text-align:left}
+.fs-num{min-width:30px;height:30px;border-radius:50%;background:linear-gradient(135deg,var(--rose),var(--gold2));color:#fff;font-family:'Cormorant Garamond',serif;font-size:0.95rem;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.fs-t{font-size:0.86rem;font-weight:600;margin-bottom:2px;color:var(--text)}
+.fs-d{font-size:0.76rem;color:var(--muted);line-height:1.6}
+
+/* ══ TICKER ══ */
+.ticker{overflow:hidden;white-space:nowrap;background:var(--ink3);border-top:1px solid var(--border);border-bottom:1px solid var(--border);padding:11px 0}
+.tk-inner{display:inline-flex;gap:26px;animation:tk 20s linear infinite}
+.tki{font-size:0.68rem;letter-spacing:0.13em;color:var(--muted)}
+@keyframes tk{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+
+/* ══ SECTIONS ══ */
+.sec{padding:54px 20px}
+.sec-alt{background:var(--ink2)}
+.w{max-width:1100px;margin:0 auto}
+.slabel{font-size:0.6rem;letter-spacing:0.22em;text-transform:uppercase;color:var(--gold2);display:flex;align-items:center;gap:10px;margin-bottom:12px}
+.slabel::before{content:'';width:20px;height:1px;background:var(--gold2);display:block}
+.sh{margin-bottom:32px}
+.sh h2{font-family:'Cormorant Garamond',serif;font-size:clamp(1.7rem,6vw,2.8rem);font-weight:400;line-height:1.15}
+.sh h2 em{color:var(--rose3);font-style:italic}
+.sh p{font-size:0.86rem;color:var(--muted);line-height:1.85;max-width:500px;margin-top:9px;font-weight:300}
+
+/* ══ CATEGORIES ══ */
+.rainbow{height:4px;background:linear-gradient(90deg,#E40303,#FF8C00,#FFED00,#008026,#004DFF,#750787);margin-bottom:24px}
+.cat-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.cc{border:1px solid var(--border);padding:18px 13px;text-align:center;display:flex;flex-direction:column;align-items:center;cursor:pointer;transition:all .3s;position:relative;overflow:hidden}
+.cc::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;transform:scaleX(0);transform-origin:left;transition:transform .35s}
+.cc:hover{transform:translateY(-3px)}
+.cc:hover::before{transform:scaleX(1)}
+.cc-hetero{background:rgba(181,68,90,0.05)}.cc-hetero::before{background:linear-gradient(90deg,var(--rose),var(--gold2))}.cc-hetero:hover{border-color:var(--rose2)}
+.cc-gay{background:rgba(123,79,166,0.06)}.cc-gay::before{background:linear-gradient(90deg,#6B35B8,var(--violet2))}.cc-gay:hover{border-color:var(--violet2)}
+.cc-lesb{background:rgba(224,64,160,0.06)}.cc-lesb::before{background:linear-gradient(90deg,#E040A0,var(--rose3))}.cc-lesb:hover{border-color:#E040A0}
+.cc-bi{background:rgba(123,79,166,0.05)}.cc-bi::before{background:linear-gradient(90deg,var(--rose),var(--violet),var(--teal))}.cc-bi:hover{border-color:var(--violet2)}
+.cc-trans{background:rgba(85,205,252,0.05)}.cc-trans::before{background:linear-gradient(90deg,#55CDFC,#F7A8B8,#fff)}.cc-trans:hover{border-color:#55CDFC}
+.cc-queer{background:rgba(200,149,42,0.04)}.cc-queer::before{background:linear-gradient(90deg,#FF0018,#FFA52C,#FFFF41,#008018,#0000F9,#86007D)}.cc-queer:hover{border-color:var(--rose2)}
+.cc-senior{background:rgba(200,149,42,0.05)}.cc-senior::before{background:linear-gradient(90deg,var(--gold),var(--gold2))}.cc-senior:hover{border-color:var(--gold2)}
+.cc-diasp{background:rgba(46,157,143,0.05)}.cc-diasp::before{background:linear-gradient(90deg,var(--teal),var(--teal2))}.cc-diasp:hover{border-color:var(--teal2)}
+.cc-em{font-size:1.9rem;margin-bottom:8px}
+.cc-name{font-family:'Cormorant Garamond',serif;font-size:0.98rem;margin-bottom:3px;font-weight:400}
+.cc-desc{font-size:0.68rem;color:var(--muted);line-height:1.4}
+.cc-tag{margin-top:6px;padding:2px 8px;font-size:0.55rem;letter-spacing:0.1em;text-transform:uppercase;border:1px solid currentColor;opacity:0.7}
+
+/* ══ FEATURES ══ */
+.feat-grid{display:grid;grid-template-columns:1fr;gap:13px}
+.fc{background:var(--card);border:1px solid var(--border);padding:22px 18px;position:relative;overflow:hidden;transition:border-color .3s,transform .3s}
+.fc:hover{border-color:rgba(200,149,42,0.45);transform:translateY(-3px)}
+.fc::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--rose),var(--gold2));transform:scaleX(0);transform-origin:left;transition:transform .35s}
+.fc:hover::before{transform:scaleX(1)}
+.fc-em{font-size:1.7rem;margin-bottom:11px}
+.fc-title{font-family:'Cormorant Garamond',serif;font-size:1.15rem;margin-bottom:7px;font-weight:400}
+.fc-txt{font-size:0.82rem;color:var(--muted);line-height:1.75}
+.fc-new{position:absolute;top:11px;right:11px;background:var(--rose);color:#fff;font-size:0.52rem;letter-spacing:0.1em;text-transform:uppercase;padding:2px 7px;font-weight:600}
+
+/* ══ TCHAT ══ */
+.chat-screen{display:none;position:fixed;inset:0;z-index:996;background:var(--ink);padding-top:58px;padding-bottom:62px;flex-direction:column}
+.chat-screen.visible{display:flex}
+
+/* Liste conversations */
+.chat-list{flex:1;overflow-y:auto;padding:0}
+.chat-list-header{padding:16px 18px 12px;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between}
+.chat-list-title{font-family:'Cormorant Garamond',serif;font-size:1.4rem;font-weight:400}
+.chat-search{width:100%;margin:12px 18px;padding:10px 14px;background:rgba(255,255,255,0.06);border:1px solid var(--border);color:var(--text);font-family:'Jost',sans-serif;font-size:0.85rem;outline:none;width:calc(100% - 36px);display:block}
+.chat-search:focus{border-color:var(--gold2)}
+.conv-item{display:flex;align-items:center;gap:13px;padding:14px 18px;border-bottom:1px solid rgba(200,149,42,0.08);cursor:pointer;transition:background .25s;position:relative}
+.conv-item:hover,.conv-item.active{background:rgba(200,149,42,0.06)}
+.conv-avatar{width:48px;height:48px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1.4rem;flex-shrink:0;position:relative}
+.conv-online{position:absolute;bottom:2px;right:2px;width:12px;height:12px;border-radius:50%;background:#2A9D5C;border:2px solid var(--ink)}
+.conv-info{flex:1;min-width:0}
+.conv-name{font-weight:600;font-size:0.9rem;margin-bottom:3px}
+.conv-last{font-size:0.76rem;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.conv-meta{display:flex;flex-direction:column;align-items:flex-end;gap:5px;flex-shrink:0}
+.conv-time{font-size:0.65rem;color:var(--muted)}
+.conv-badge{background:var(--rose);color:#fff;font-size:0.6rem;font-weight:700;width:18px;height:18px;border-radius:50%;display:flex;align-items:center;justify-content:center}
+
+/* Fenêtre de tchat */
+.chat-window{display:none;flex:1;flex-direction:column;overflow:hidden}
+.chat-window.visible{display:flex}
+.chat-window-header{padding:12px 16px;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:12px;background:var(--ink2)}
+.chat-back{background:none;border:none;color:var(--gold2);font-size:1.3rem;cursor:pointer;padding:4px;flex-shrink:0}
+.chat-avatar-sm{width:38px;height:38px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1.1rem;flex-shrink:0}
+.chat-user-info{flex:1}
+.chat-user-name{font-weight:600;font-size:0.9rem}
+.chat-user-status{font-size:0.68rem;color:#2A9D5C}
+.chat-messages{flex:1;overflow-y:auto;padding:16px;display:flex;flex-direction:column;gap:12px}
+.msg{display:flex;flex-direction:column;max-width:78%}
+.msg-sent{align-self:flex-end;align-items:flex-end}
+.msg-recv{align-self:flex-start;align-items:flex-start}
+.msg-bubble{padding:10px 14px;font-size:0.85rem;line-height:1.5;position:relative}
+.msg-sent .msg-bubble{background:linear-gradient(135deg,var(--rose),var(--rose2));color:#fff;border-radius:16px 16px 4px 16px}
+.msg-recv .msg-bubble{background:rgba(255,255,255,0.08);color:var(--text);border-radius:16px 16px 16px 4px}
+.msg-time{font-size:0.6rem;color:var(--muted);margin-top:3px;padding:0 4px}
+.msg-sent .msg-time{text-align:right}
+.chat-input-area{padding:12px 14px;border-top:1px solid var(--border);display:flex;gap:10px;align-items:flex-end;background:var(--ink2)}
+.chat-input{flex:1;padding:11px 14px;background:rgba(255,255,255,0.07);border:1px solid var(--border);color:var(--text);font-family:'Jost',sans-serif;font-size:0.88rem;outline:none;resize:none;max-height:100px;border-radius:0;transition:border-color .25s}
+.chat-input:focus{border-color:var(--gold2)}
+.chat-send{padding:11px 16px;background:linear-gradient(135deg,var(--rose),var(--rose2));color:#fff;border:none;font-size:1.1rem;cursor:pointer;flex-shrink:0;transition:opacity .25s}
+.chat-send:hover{opacity:0.88}
+.flame-match{background:linear-gradient(135deg,rgba(181,68,90,0.15),rgba(200,149,42,0.15));border:1px solid rgba(181,68,90,0.4);padding:12px 16px;margin:8px 0;text-align:center;font-size:0.8rem}
+.flame-match span{color:var(--gold2);font-weight:600}
+
+/* ══ INSCRIPTION ══ */
+.rsec{background:var(--ink3);border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
+.ri{display:grid;grid-template-columns:1fr;gap:28px}
+.fbox{background:rgba(255,255,255,0.03);border:1px solid var(--border);padding:24px 18px}
+.ftitle{font-family:'Cormorant Garamond',serif;font-size:1.45rem;font-weight:400;margin-bottom:20px}
+.frow{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.fgrp{margin-bottom:12px}
+.fgrp label{display:block;font-size:0.61rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--muted);margin-bottom:5px}
+.fgrp input,.fgrp select{width:100%;padding:12px 13px;background:rgba(255,255,255,0.06);border:1px solid var(--border);color:var(--text);font-family:'Jost',sans-serif;font-size:0.88rem;outline:none;transition:border-color .3s;-webkit-appearance:none;appearance:none}
+.fgrp input:focus,.fgrp select:focus{border-color:var(--gold2)}
+.fgrp select option{background:var(--ink2);color:var(--text)}
+.btn-reg{width:100%;padding:15px;background:linear-gradient(135deg,var(--rose),var(--rose2));color:#fff;font-family:'Jost',sans-serif;font-size:0.83rem;font-weight:600;letter-spacing:0.13em;text-transform:uppercase;border:none;transition:all .3s;margin-top:4px;box-shadow:0 4px 20px rgba(181,68,90,0.3)}
+.btn-reg:hover{opacity:0.9;transform:translateY(-1px)}
+.fnote{font-size:0.68rem;color:var(--muted);text-align:center;margin-top:10px;line-height:1.6}
+.steps-list{list-style:none}
+.steps-list li{display:flex;gap:12px;align-items:flex-start;margin-bottom:18px;font-size:0.84rem;color:var(--muted);line-height:1.65}
+.snum{min-width:26px;height:26px;border:1px solid var(--rose2);color:var(--rose2);font-family:'Cormorant Garamond',serif;font-size:0.9rem;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.steps-list strong{color:var(--text);display:block;margin-bottom:2px}
+
+/* ══ PRICING ══ */
+.price-grid{display:grid;grid-template-columns:1fr;gap:13px}
+.pc{background:var(--card);border:1px solid var(--border);padding:26px 18px;text-align:center;position:relative;transition:all .3s}
+.pc:hover{transform:translateY(-3px)}
+.pc.hot{border-color:var(--rose2);background:rgba(181,68,90,0.07)}
+.hbadge{position:absolute;top:-11px;left:50%;transform:translateX(-50%);background:linear-gradient(135deg,var(--rose),var(--rose2));color:#fff;padding:3px 13px;font-size:0.6rem;letter-spacing:0.13em;text-transform:uppercase;font-weight:600}
+.pplan{font-size:0.61rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--muted);margin-bottom:12px}
+.pamount{font-family:'Cormorant Garamond',serif;font-size:2.7rem;font-weight:600;color:var(--gold2);line-height:1}
+.pcur{font-size:0.88rem;vertical-align:top;margin-top:7px;display:inline-block}
+.pper{font-size:0.73rem;color:var(--muted);margin:7px 0 20px}
+.plist{list-style:none;margin-bottom:22px}
+.plist li{font-size:0.8rem;color:var(--muted);padding:6px 0;border-bottom:1px solid var(--border);text-align:left}
+.plist li:last-child{border:none}
+.plist li::before{content:'♥  ';color:var(--rose2);font-size:0.68rem}
+.btn-p{width:100%;padding:12px;font-family:'Jost',sans-serif;font-size:0.76rem;font-weight:600;letter-spacing:0.11em;text-transform:uppercase;cursor:pointer;transition:all .3s;border:1px solid var(--rose2);background:transparent;color:var(--rose2)}
+.btn-p:hover,.pc.hot .btn-p{background:linear-gradient(135deg,var(--rose),var(--rose2));color:#fff;border-color:transparent}
+
+/* ══ PAYMENTS ══ */
+.pay-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:26px}
+.pay-item{background:var(--card);border:1px solid var(--border);padding:12px 13px;font-size:0.78rem;color:var(--muted);display:flex;align-items:center;gap:7px}
+
+/* ══ FOOTER ══ */
+footer{background:var(--ink);border-top:1px solid var(--border);padding:42px 20px 20px}
+.flinks{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin:22px 0}
+.fcol h4{font-size:0.58rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--gold2);margin-bottom:12px}
+.fcol ul{list-style:none}
+.fcol li{margin-bottom:7px}
+.fcol a{font-size:0.8rem;color:var(--muted);transition:color .25s}
+.fcol a:hover{color:var(--gold2)}
+.fbot{border-top:1px solid var(--border);padding-top:16px;font-size:0.7rem;color:var(--muted);display:flex;flex-direction:column;gap:7px}
+.flangs{display:flex;gap:13px}
+.flangs a{color:var(--muted);font-size:0.7rem;transition:color .25s}
+.flangs a:hover{color:var(--gold2)}
+
+/* ══ BOTTOM NAV ══ */
+.bnav{position:fixed;bottom:0;left:0;right:0;z-index:997;background:rgba(6,4,10,0.96);border-top:1px solid var(--border);display:flex;height:60px;backdrop-filter:blur(24px);-webkit-backdrop-filter:blur(24px)}
+.bn{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;color:var(--muted);font-size:0.47rem;letter-spacing:0.06em;text-transform:uppercase;border:none;background:none;transition:color .25s;cursor:pointer;padding:0}
+.bn.on,.bn:hover{color:var(--rose2)}
+.bn-i{font-size:1.15rem}
+/* Badge notif tchat */
+.bn-badge{position:relative;display:inline-block}
+.notif-dot{position:absolute;top:-2px;right:-4px;width:8px;height:8px;border-radius:50%;background:var(--rose);border:1px solid var(--ink)}
+
+/* ══ MODAL PAIEMENT ══ */
+.overlay{display:none;position:fixed;inset:0;background:rgba(6,4,10,0.96);z-index:9998;align-items:center;justify-content:center;padding:22px}
+.overlay.on{display:flex}
+.modal{background:var(--ink2);border:1px solid var(--border);padding:28px 20px;width:100%;max-width:370px;position:relative;animation:fadeUp .3s ease}
+.mclose{position:absolute;top:13px;right:15px;background:none;border:none;color:var(--muted);font-size:1.3rem;cursor:pointer}
+.mclose:hover{color:var(--gold2)}
+.modal h3{font-family:'Cormorant Garamond',serif;font-size:1.5rem;font-weight:400;margin-bottom:5px}
+.msub{font-size:0.8rem;color:var(--muted);margin-bottom:18px}
+.mbtns{display:grid;gap:8px}
+.mpay{padding:12px 13px;background:rgba(255,255,255,0.04);border:1px solid var(--border);color:var(--text);font-family:'Jost',sans-serif;font-size:0.81rem;cursor:pointer;transition:all .25s;text-align:left;display:flex;align-items:center;gap:9px}
+.mpay:hover{border-color:var(--rose2);color:var(--rose2)}
+
+/* ══ TOAST ══ */
+.toast{position:fixed;bottom:72px;left:50%;transform:translateX(-50%);padding:12px 20px;font-size:0.81rem;white-space:nowrap;display:none;z-index:99999;animation:fadeUp .3s ease;box-shadow:0 8px 28px rgba(0,0,0,.6);max-width:92vw;text-align:center}
+.toast.on{display:block}
+.toast.success{background:rgba(42,157,92,.15);border:1px solid #2A9D5C;color:#2A9D5C}
+.toast.error{background:rgba(212,68,60,.15);border:1px solid #D4443C;color:#D4443C}
+.toast.info{background:var(--ink2);border:1px solid var(--rose2);color:var(--rose2)}
+
+/* ══ RESPONSIVE ══ */
+@media(min-width:580px){
+  .feat-grid{grid-template-columns:1fr 1fr}
+  .price-grid{grid-template-columns:1fr 1fr}
+  .pay-grid{grid-template-columns:repeat(3,1fr)}
+  .hero-btns{flex-direction:row;max-width:none}
+  .btn-main,.btn-ghost{width:auto;padding:15px 28px}
+  .flamme-steps{grid-template-columns:1fr 1fr}
+  .lang-grid{grid-template-columns:repeat(4,1fr)}
+  .cat-grid{grid-template-columns:repeat(3,1fr)}
+}
+@media(min-width:900px){
+  body{padding-bottom:0}
+  .bnav{display:none}
+  .feat-grid{grid-template-columns:repeat(3,1fr)}
+  .price-grid{grid-template-columns:repeat(4,1fr)}
+  .cat-grid{grid-template-columns:repeat(4,1fr)}
+  .ri{grid-template-columns:1fr 1fr;gap:48px;align-items:start}
+  .sec{padding:78px 48px}
+  .nav{padding:0 48px}
+  .flamme-steps{grid-template-columns:repeat(4,1fr)}
+  .chat-screen{display:none !important}
+}
+</style>
+</head>
+<body>
+
+<div class="toast" id="toast">✓</div>
+
+<!-- ══ LANGUE ══ -->
+<div class="lang-screen" id="langScreen">
+  <svg width="90" height="90" viewBox="0 0 200 200" fill="none">
+    <defs>
+      <linearGradient id="ls-g" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#F5D98A"/><stop offset="50%" stop-color="#C8952A"/><stop offset="100%" stop-color="#E0B44A"/></linearGradient>
+      <linearGradient id="ls-r" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#F0A0B2"/><stop offset="100%" stop-color="#D4687E"/></linearGradient>
+    </defs>
+    <circle cx="100" cy="100" r="96" fill="#1A0408" stroke="url(#ls-g)" stroke-width="3"/>
+    <path d="M62 130 C62 130 45 118 45 104 C45 96 50 90 58 88 C62 87 66 88 69 90 C70 83 72 77 76 73 C80 69 85 67 90 67 C90 67 88 75 87 82 C83 85 80 90 78 96 C76 103 76 112 78 120 C73 125 68 128 62 130Z" fill="url(#ls-g)" opacity="0.9"/>
+    <ellipse cx="82" cy="58" rx="10" ry="12" fill="url(#ls-g)" opacity="0.9"/>
+    <path d="M138 130 C138 130 155 118 155 104 C155 96 150 90 142 88 C138 87 134 88 131 90 C130 83 128 77 124 73 C120 69 115 67 110 67 C110 67 112 75 113 82 C117 85 120 90 122 96 C124 103 124 112 122 120 C127 125 132 128 138 130Z" fill="url(#ls-r)" opacity="0.9"/>
+    <path d="M120 58 C120 52 116 46 110 44 C104 42 98 44 96 50 C94 56 96 64 100 68 C104 72 108 72 112 70 C118 67 120 63 120 58Z" fill="url(#ls-r)" opacity="0.85"/>
+    <path d="M100 145 C100 145 75 128 75 112 C75 104 81 98 89 98 C93 98 97 100 100 104 C103 100 107 98 111 98 C119 98 125 104 125 112 C125 128 100 145 100 145Z" fill="#8B0000" stroke="url(#ls-g)" stroke-width="1.5"/>
+    <circle cx="100" cy="114" r="5" fill="#FF6B6B" opacity="0.9"/>
+    <path d="M158 30 L161 24 L164 30 L170 33 L164 36 L161 42 L158 36 L152 33Z" fill="#F5D98A" opacity="0.95"/>
+    <circle cx="42" cy="50" r="2.5" fill="#F5D98A" opacity="0.7"/>
+    <circle cx="165" cy="65" r="2" fill="#F5D98A" opacity="0.6"/>
+    <circle cx="100" cy="5" r="2.5" fill="#F5D98A" opacity="0.8"/>
+    <circle cx="100" cy="196" r="2.5" fill="#F5D98A" opacity="0.7"/>
+  </svg>
+  <div class="ls-name">ÉRÉNIK</div>
+  <div class="ls-sub">Rencontres Amoureuses Mondiales</div>
+  <h2 class="ls-title">Choisissez votre langue</h2>
+  <p class="ls-desc">Choose · Elige · Scegli · Escolha</p>
+  <div class="lang-grid">
+    <button class="lang-btn" onclick="setLang('fr','🇫🇷')"><span style="font-size:1.4rem">🇫🇷</span><span class="lname"><span class="lnative">Français</span><span class="llocal">French</span></span></button>
+    <button class="lang-btn" onclick="setLang('en','🇬🇧')"><span style="font-size:1.4rem">🇬🇧</span><span class="lname"><span class="lnative">English</span><span class="llocal">Anglais</span></span></button>
+    <button class="lang-btn" onclick="setLang('es','🇪🇸')"><span style="font-size:1.4rem">🇪🇸</span><span class="lname"><span class="lnative">Español</span><span class="llocal">Espagnol</span></span></button>
+    <button class="lang-btn" onclick="setLang('it','🇮🇹')"><span style="font-size:1.4rem">🇮🇹</span><span class="lname"><span class="lnative">Italiano</span><span class="llocal">Italien</span></span></button>
+    <button class="lang-btn" onclick="setLang('pt','🇵🇹')"><span style="font-size:1.4rem">🇵🇹</span><span class="lname"><span class="lnative">Português</span><span class="llocal">Portugais</span></span></button>
+    <button class="lang-btn" onclick="setLang('ru','🇷🇺')"><span style="font-size:1.4rem">🇷🇺</span><span class="lname"><span class="lnative">Русский</span><span class="llocal">Russe</span></span></button>
+    <button class="lang-btn" onclick="setLang('de','🇩🇪')"><span style="font-size:1.4rem">🇩🇪</span><span class="lname"><span class="lnative">Deutsch</span><span class="llocal">Allemand</span></span></button>
+    <button class="lang-btn" onclick="setLang('ar','🌍')"><span style="font-size:1.4rem">🌍</span><span class="lname"><span class="lnative">العربية</span><span class="llocal">Arabe</span></span></button>
+  </div>
+</div>
+
+<!-- ══ TCHAT SCREEN ══ -->
+<div class="chat-screen" id="chatScreen">
+
+  <!-- Liste des conversations -->
+  <div id="chatList" style="flex:1;overflow-y:auto;display:flex;flex-direction:column">
+    <div class="chat-list-header">
+      <div class="chat-list-title">💬 Messages</div>
+      <div style="font-size:0.68rem;color:var(--muted)">3 nouvelles</div>
+    </div>
+    <input class="chat-search" placeholder="🔍 Rechercher une conversation..." id="chatSearchInput">
+
+    <!-- Notification Flamme -->
+    <div class="flame-match" style="margin:10px 16px">
+      🔥 <span>Votre Flamme du jour vous a envoyé un message !</span>
+      <button onclick="openConv('Amina K.','🌸','Amina','🇲🇦 Maroc',true)" style="display:block;margin-top:8px;width:100%;padding:8px;background:linear-gradient(135deg,var(--rose),var(--gold));color:#fff;border:none;font-family:Jost,sans-serif;font-size:0.75rem;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;cursor:pointer">Voir le message →</button>
+    </div>
+
+    <!-- Conversations -->
+    <div class="conv-item" onclick="openConv('Amina K.','🌸','Amina','🇲🇦 Maroc',true)">
+      <div class="conv-avatar" style="background:rgba(181,68,90,0.2)">🌸<div class="conv-online"></div></div>
+      <div class="conv-info">
+        <div class="conv-name">Amina K. <span style="font-size:0.6rem;color:var(--gold2);margin-left:4px">🔥 Flamme 94%</span></div>
+        <div class="conv-last">Bonjour ! J'ai vu votre profil et...</div>
+      </div>
+      <div class="conv-meta"><div class="conv-time">14:32</div><div class="conv-badge">2</div></div>
+    </div>
+
+    <div class="conv-item" onclick="openConv('Kouassi M.','🌟','Kouassi','🇨🇮 Côte d\'Ivoire',true)">
+      <div class="conv-avatar" style="background:rgba(200,149,42,0.2)">🌟<div class="conv-online"></div></div>
+      <div class="conv-info">
+        <div class="conv-name">Kouassi M.</div>
+        <div class="conv-last">Très heureux de vous avoir rencontré ici 😊</div>
+      </div>
+      <div class="conv-meta"><div class="conv-time">12:15</div><div class="conv-badge">1</div></div>
+    </div>
+
+    <div class="conv-item" onclick="openConv('Sophie R.','💜','Sophie','🇫🇷 France',false)">
+      <div class="conv-avatar" style="background:rgba(123,79,166,0.2)">💜</div>
+      <div class="conv-info">
+        <div class="conv-name">Sophie R.</div>
+        <div class="conv-last">Vous : À bientôt j'espère ! 🌹</div>
+      </div>
+      <div class="conv-meta"><div class="conv-time">Hier</div></div>
+    </div>
+
+    <div class="conv-item" onclick="openConv('Marco L.','🌺','Marco','🇮🇹 Italie',false)">
+      <div class="conv-avatar" style="background:rgba(46,157,143,0.2)">🌺</div>
+      <div class="conv-info">
+        <div class="conv-name">Marco L.</div>
+        <div class="conv-last">Ciao bella ! Come stai?</div>
+      </div>
+      <div class="conv-meta"><div class="conv-time">Lun.</div></div>
+    </div>
+
+    <div class="conv-item" onclick="openConv('Fatou D.','🌍','Fatou','🇸🇳 Sénégal',true)">
+      <div class="conv-avatar" style="background:rgba(42,157,143,0.2)">🌍<div class="conv-online"></div></div>
+      <div class="conv-info">
+        <div class="conv-name">Fatou D.</div>
+        <div class="conv-last">Vous êtes de quel pays exactement ?</div>
+      </div>
+      <div class="conv-meta"><div class="conv-time">Sam.</div></div>
+    </div>
+
+    <div style="padding:20px;text-align:center">
+      <button onclick="go('tarifs');showChat(false)" style="padding:10px 20px;background:transparent;border:1px solid var(--border);color:var(--muted);font-family:Jost,sans-serif;font-size:0.75rem;cursor:pointer">💎 Premium — Messages illimités</button>
+    </div>
+  </div>
+
+  <!-- Fenêtre de conversation -->
+  <div class="chat-window" id="chatWindow">
+    <div class="chat-window-header">
+      <button class="chat-back" onclick="closeConv()">←</button>
+      <div class="chat-avatar-sm" id="convAvatarSm" style="background:rgba(181,68,90,0.2)">🌸</div>
+      <div class="chat-user-info">
+        <div class="chat-user-name" id="convName">Amina K.</div>
+        <div class="chat-user-status" id="convStatus">● En ligne maintenant</div>
+      </div>
+      <div style="display:flex;gap:8px">
+        <button style="background:none;border:1px solid var(--border);color:var(--muted);padding:6px 10px;font-size:0.8rem;cursor:pointer" onclick="showToast('📞 Appel vidéo — Disponible en Premium','info')">📞</button>
+        <button style="background:none;border:1px solid var(--border);color:var(--muted);padding:6px 10px;font-size:0.8rem;cursor:pointer" onclick="showToast('👤 Voir profil complet','info')">👤</button>
+      </div>
+    </div>
+
+    <div class="chat-messages" id="chatMessages">
+      <!-- Messages générés par JS -->
+    </div>
+
+    <div class="chat-input-area">
+      <textarea class="chat-input" id="msgInput" placeholder="Écrivez votre message..." rows="1" onkeydown="if(event.key==='Enter'&&!event.shiftKey){event.preventDefault();sendMsg()}"></textarea>
+      <button class="chat-send" onclick="sendMsg()">➤</button>
+    </div>
+  </div>
+</div>
+
+<!-- ══ NAV ══ -->
+<nav class="nav">
+  <a href="#top" class="logo-wrap">
+    <svg width="34" height="34" viewBox="0 0 200 200" fill="none">
+      <defs><linearGradient id="n-g" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#F5D98A"/><stop offset="50%" stop-color="#C8952A"/><stop offset="100%" stop-color="#E0B44A"/></linearGradient><linearGradient id="n-r" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#F0A0B2"/><stop offset="100%" stop-color="#D4687E"/></linearGradient></defs>
+      <circle cx="100" cy="100" r="96" fill="#1A0408" stroke="url(#n-g)" stroke-width="3"/>
+      <path d="M62 130 C62 130 45 118 45 104 C45 96 50 90 58 88 C62 87 66 88 69 90 C70 83 72 77 76 73 C80 69 85 67 90 67 C90 67 88 75 87 82 C83 85 80 90 78 96 C76 103 76 112 78 120 C73 125 68 128 62 130Z" fill="url(#n-g)" opacity="0.9"/>
+      <ellipse cx="82" cy="58" rx="10" ry="12" fill="url(#n-g)" opacity="0.9"/>
+      <path d="M138 130 C138 130 155 118 155 104 C155 96 150 90 142 88 C138 87 134 88 131 90 C130 83 128 77 124 73 C120 69 115 67 110 67 C110 67 112 75 113 82 C117 85 120 90 122 96 C124 103 124 112 122 120 C127 125 132 128 138 130Z" fill="url(#n-r)" opacity="0.9"/>
+      <path d="M100 145 C100 145 75 128 75 112 C75 104 81 98 89 98 C93 98 97 100 100 104 C103 100 107 98 111 98 C119 98 125 104 125 112 C125 128 100 145 100 145Z" fill="#8B0000" stroke="url(#n-g)" stroke-width="1.5"/>
+      <path d="M158 30 L161 24 L164 30 L170 33 L164 36 L161 42 L158 36 L152 33Z" fill="#F5D98A" opacity="0.95"/>
+    </svg>
+    <div class="logo-wordmark">
+      <span class="logo-name" style="font-size:1.3rem">ÉRÉNIK</span>
+      <span class="logo-sub" id="nav-tagline">Rencontres mondiales</span>
+    </div>
+  </a>
+  <div class="nav-r">
+    <button class="flag-btn" id="flagBtn" onclick="document.getElementById('langScreen').classList.remove('hidden')">🇫🇷</button>
+    <button class="nb nb-out" onclick="go('inscription');showChat(false)">Connexion</button>
+    <button class="nb nb-in" onclick="go('inscription');showChat(false)">Rejoindre</button>
+  </div>
+</nav>
+
+<!-- ══ HERO ══ -->
+<section class="hero" id="top">
+  <div class="hero-bg"></div>
+  <div class="petals" id="petals"></div>
+  <div class="hero-logo-wrap">
+    <a href="#top" class="logo-wrap" style="flex-direction:column;align-items:center;gap:14px">
+      <svg width="108" height="108" viewBox="0 0 200 200" fill="none">
+        <defs>
+          <linearGradient id="h-g" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#F5D98A"/><stop offset="50%" stop-color="#C8952A"/><stop offset="100%" stop-color="#E0B44A"/></linearGradient>
+          <linearGradient id="h-r" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#F0A0B2"/><stop offset="100%" stop-color="#D4687E"/></linearGradient>
+          <radialGradient id="h-heart" cx="50%" cy="50%" r="50%"><stop offset="0%" stop-color="#D4443C" stop-opacity="0.95"/><stop offset="60%" stop-color="#8B0000"/><stop offset="100%" stop-color="#3D0000" stop-opacity="0.5"/></radialGradient>
+          <filter id="h-glow" x="-20%" y="-20%" width="140%" height="140%"><feGaussianBlur stdDeviation="3" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+          <filter id="h-sparkle" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="2" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+        </defs>
+        <circle cx="100" cy="100" r="96" fill="#1A0408" stroke="url(#h-g)" stroke-width="3"/>
+        <circle cx="100" cy="100" r="88" fill="none" stroke="url(#h-g)" stroke-width="0.8" opacity="0.4"/>
+        <ellipse cx="48" cy="145" rx="18" ry="22" fill="#8B0000" opacity="0.3" transform="rotate(-30 48 145)"/>
+        <path d="M62 130 C62 130 45 118 45 104 C45 96 50 90 58 88 C62 87 66 88 69 90 C70 83 72 77 76 73 C80 69 85 67 90 67 C90 67 88 75 87 82 C83 85 80 90 78 96 C76 103 76 112 78 120 C73 125 68 128 62 130Z" fill="url(#h-g)" opacity="0.9" filter="url(#h-glow)"/>
+        <ellipse cx="82" cy="58" rx="10" ry="12" fill="url(#h-g)" opacity="0.9"/>
+        <path d="M138 130 C138 130 155 118 155 104 C155 96 150 90 142 88 C138 87 134 88 131 90 C130 83 128 77 124 73 C120 69 115 67 110 67 C110 67 112 75 113 82 C117 85 120 90 122 96 C124 103 124 112 122 120 C127 125 132 128 138 130Z" fill="url(#h-r)" opacity="0.9" filter="url(#h-glow)"/>
+        <path d="M120 58 C120 52 116 46 110 44 C104 42 98 44 96 50 C94 56 96 64 100 68 C104 72 108 72 112 70 C118 67 120 63 120 58Z" fill="url(#h-r)" opacity="0.88"/>
+        <path d="M120 60 C124 66 126 74 128 82" stroke="url(#h-g)" stroke-width="2.5" fill="none" opacity="0.6"/>
+        <path d="M100 145 C100 145 75 128 75 112 C75 104 81 98 89 98 C93 98 97 100 100 104 C103 100 107 98 111 98 C119 98 125 104 125 112 C125 128 100 145 100 145Z" fill="url(#h-heart)" filter="url(#h-glow)"/>
+        <path d="M100 145 C100 145 75 128 75 112 C75 104 81 98 89 98 C93 98 97 100 100 104 C103 100 107 98 111 98 C119 98 125 104 125 112 C125 128 100 145 100 145Z" fill="none" stroke="url(#h-g)" stroke-width="2"/>
+        <circle cx="100" cy="114" r="6" fill="#FF6B6B" opacity="0.9" filter="url(#h-sparkle)"/>
+        <line x1="100" y1="106" x2="100" y2="122" stroke="rgba(255,255,255,0.9)" stroke-width="1"/>
+        <line x1="92" y1="114" x2="108" y2="114" stroke="rgba(255,255,255,0.9)" stroke-width="1"/>
+        <path d="M158 30 L161 24 L164 30 L170 33 L164 36 L161 42 L158 36 L152 33Z" fill="#F5D98A" opacity="0.95" filter="url(#h-sparkle)"/>
+        <circle cx="162" cy="33" r="3" fill="white" opacity="0.7"/>
+        <circle cx="42" cy="50" r="2.5" fill="#F5D98A" opacity="0.7"/>
+        <circle cx="165" cy="65" r="2" fill="#F5D98A" opacity="0.6"/>
+        <circle cx="100" cy="5" r="2.5" fill="#F5D98A" opacity="0.8"/>
+        <circle cx="100" cy="196" r="2.5" fill="#F5D98A" opacity="0.7"/>
+        <path d="M55 168 Q100 155 145 168" stroke="#E40303" stroke-width="1.2" fill="none" opacity="0.35"/>
+        <path d="M58 172 Q100 160 142 172" stroke="#FF8C00" stroke-width="1" fill="none" opacity="0.3"/>
+        <path d="M61 176 Q100 165 139 176" stroke="#FFED00" stroke-width="0.8" fill="none" opacity="0.25"/>
+      </svg>
+      <div class="logo-wordmark" style="align-items:center">
+        <span class="logo-name" style="font-size:clamp(2rem,7vw,3.5rem)">ÉRÉNIK</span>
+        <span class="logo-sub" style="font-size:0.6rem;text-align:center;margin-top:5px">Rencontres Amoureuses Mondiales</span>
+      </div>
+    </a>
+  </div>
+  <h1 class="hero-h1" id="hero-h1">L'amour n'a pas<br><em>de frontières</em></h1>
+  <p class="hero-desc" id="hero-desc">Connectez-vous à des âmes du monde entier. Rencontres sincères, profils vérifiés, tchat instantané. Votre histoire commence ici.</p>
+  <div class="hero-btns">
+    <button class="btn-main" onclick="go('inscription')">✨ Créer mon profil</button>
+    <button class="btn-ghost" onclick="go('categories')">Découvrir →</button>
+  </div>
+  <div class="hero-stats">
+    <div class="st"><span class="st-n">190+</span><span class="st-l">Pays</span></div>
+    <div class="st"><span class="st-n">7</span><span class="st-l">Langues</span></div>
+    <div class="st"><span class="st-n">Free</span><span class="st-l">Départ</span></div>
+    <div class="st"><span class="st-n">24/7</span><span class="st-l">En ligne</span></div>
+  </div>
+</section>
+
+<!-- ══ FLAMME ══ -->
+<section class="flamme-sec" id="flamme">
+  <div class="w">
+    <div class="flamme-badge">🔥 Exclusivité mondiale · Disponible uniquement sur ÉRÉNIK</div>
+    <h2 class="flamme-h2">La <em>Flamme Érénik</em></h2>
+    <p class="flamme-desc">La seule technologie au monde qui analyse la compatibilité profonde de deux âmes — une alerte unique chaque jour. Pas cent profils. Une seule âme. La bonne.</p>
+    <div class="flamme-card">
+      <span class="flamme-icon">🔥</span>
+      <p style="font-size:0.8rem;color:var(--muted);margin-bottom:14px">Aperçu d'une notification Flamme Érénik</p>
+      <div class="fn-box">
+        <div class="fn-top">🔥 Alerte Flamme Érénik</div>
+        <div class="fn-title">Une âme compatible vient d'apparaître</div>
+        <span class="fn-pct">94%</span>
+        <div class="fn-sub">de compatibilité spirituelle · Cette rencontre pourrait changer votre vie</div>
+        <button class="fn-btn" onclick="showChat(true);showToast('🔥 Votre Flamme vous attend dans le tchat !','info')">Oui, je veux lui écrire →</button>
+      </div>
+    </div>
+    <div class="flamme-steps">
+      <div class="fs"><div class="fs-num">1</div><div><div class="fs-t">7 Questions de l'Âme</div><div class="fs-d">Vos valeurs, vision de l'amour, rapport à la famille.</div></div></div>
+      <div class="fs"><div class="fs-num">2</div><div><div class="fs-t">Algorithme exclusif</div><div class="fs-d">Compatibilité spirituelle unique calculée pour vous.</div></div></div>
+      <div class="fs"><div class="fs-num">3</div><div><div class="fs-t">Une alerte par jour</div><div class="fs-d">Rare. Précieux. Irrésistible. Revenez chaque jour.</div></div></div>
+      <div class="fs"><div class="fs-num">4</div><div><div class="fs-t">Tchat instantané</div><div class="fs-d">Écrivez directement à votre Flamme et commencez l'aventure.</div></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ TICKER ══ -->
+<div class="ticker">
+  <div class="tk-inner">
+    <span class="tki">🇫🇷 Français</span><span class="tki">♥</span><span class="tki">🇬🇧 English</span><span class="tki">♥</span><span class="tki">🇪🇸 Español</span><span class="tki">♥</span><span class="tki">🇮🇹 Italiano</span><span class="tki">♥</span><span class="tki">🇵🇹 Português</span><span class="tki">♥</span><span class="tki">🇷🇺 Русский</span><span class="tki">♥</span><span class="tki">🇩🇪 Deutsch</span><span class="tki">♥</span><span class="tki">🇫🇷 Français</span><span class="tki">♥</span><span class="tki">🇬🇧 English</span><span class="tki">♥</span><span class="tki">🇪🇸 Español</span><span class="tki">♥</span><span class="tki">🇮🇹 Italiano</span><span class="tki">♥</span><span class="tki">🇵🇹 Português</span><span class="tki">♥</span><span class="tki">🇷🇺 Русский</span><span class="tki">♥</span><span class="tki">🇩🇪 Deutsch</span>
+  </div>
+</div>
+
+<!-- ══ CATEGORIES ══ -->
+<section class="sec sec-alt" id="categories">
+  <div class="w">
+    <div class="sh" style="text-align:center;margin-bottom:10px">
+      <div class="slabel" style="justify-content:center">Pour tout le monde</div>
+      <h2>Votre communauté,<br><em>votre rencontre</em></h2>
+      <p style="margin:8px auto 0">Espace inclusif, sécurisé et bienveillant pour toutes les orientations, identités et tous les âges.</p>
+    </div>
+    <div class="rainbow" style="margin-top:20px"></div>
+    <div class="cat-grid">
+      <a href="#inscription" class="cc cc-hetero"><div class="cc-em">👫</div><div class="cc-name">Hétérosexuel·le·s</div><div class="cc-desc">Homme & Femme</div><div class="cc-tag" style="color:var(--rose2)">Straight</div></a>
+      <a href="#inscription" class="cc cc-gay"><div class="cc-em">🏳️‍🌈</div><div class="cc-name">Gay</div><div class="cc-desc">Hommes & Hommes</div><div class="cc-tag" style="color:var(--violet2)">Men</div></a>
+      <a href="#inscription" class="cc cc-lesb"><div class="cc-em">👭</div><div class="cc-name">Lesbiennes</div><div class="cc-desc">Femmes & Femmes</div><div class="cc-tag" style="color:#E040A0">Women</div></a>
+      <a href="#inscription" class="cc cc-bi"><div class="cc-em">💜</div><div class="cc-name">Bisexuel·le·s</div><div class="cc-desc">Amour sans frontières</div><div class="cc-tag" style="color:var(--violet2)">Bi · Pan</div></a>
+      <a href="#inscription" class="cc cc-trans"><div class="cc-em">🏳️‍⚧️</div><div class="cc-name">Trans & Non-binaires</div><div class="cc-desc">Toutes identités</div><div class="cc-tag" style="color:#55CDFC">Trans · NB</div></a>
+      <a href="#inscription" class="cc cc-queer"><div class="cc-em">🌈</div><div class="cc-name">Queer & LGBTQ+</div><div class="cc-desc">Communauté inclusive</div><div class="cc-tag" style="color:var(--rose3)">LGBTQ+</div></a>
+      <a href="#inscription" class="cc cc-senior"><div class="cc-em">🌟</div><div class="cc-name">Seniors 50+</div><div class="cc-desc">L'amour n'a pas d'âge</div><div class="cc-tag" style="color:var(--gold2)">Silver Love</div></a>
+      <a href="#inscription" class="cc cc-diasp"><div class="cc-em">🌍</div><div class="cc-name">Diaspora Africaine</div><div class="cc-desc">Africains du monde</div><div class="cc-tag" style="color:var(--teal2)">Africa</div></a>
+    </div>
+    <p style="text-align:center;font-size:0.72rem;color:var(--muted);margin-top:16px">🏳️‍🌈 ÉRÉNIK est un espace 100% inclusif, sans jugement et sans discrimination.</p>
+  </div>
+</section>
+
+<!-- ══ FEATURES ══ -->
+<section class="sec" id="features">
+  <div class="w">
+    <div class="sh">
+      <div class="slabel">Fonctionnalités</div>
+      <h2>Tout pour <em>trouver l'amour</em></h2>
+      <p>Plateforme moderne, sécurisée et intuitive pour des rencontres authentiques partout dans le monde.</p>
+    </div>
+    <div class="feat-grid">
+      <div class="fc"><div class="fc-new">Exclusif</div><div class="fc-em">🔥</div><div class="fc-title">La Flamme Érénik</div><p class="fc-txt">Compatibilité spirituelle unique. Une alerte par jour. L'âme sœur identifiée par notre algorithme exclusif.</p></div>
+      <div class="fc"><div class="fc-new">Nouveau</div><div class="fc-em">💬</div><div class="fc-title">Tchat Instantané</div><p class="fc-txt">Messagerie en temps réel. Bulles de messages, photos, emojis. Comme WhatsApp mais pour l'amour.</p></div>
+      <div class="fc"><div class="fc-em">🔍</div><div class="fc-title">Recherche Avancée</div><p class="fc-txt">Filtrez par pays, âge, orientation, intérêts. Trouvez exactement votre compatibilité idéale.</p></div>
+      <div class="fc"><div class="fc-em">📸</div><div class="fc-title">Profils Riches</div><p class="fc-txt">Photos multiples, bio, valeurs, centres d'intérêt. Exprimez pleinement qui vous êtes.</p></div>
+      <div class="fc"><div class="fc-em">🛡️</div><div class="fc-title">Profils Vérifiés</div><p class="fc-txt">Système de vérification pour une communauté saine. Zéro faux profil toléré.</p></div>
+      <div class="fc"><div class="fc-em">📧</div><div class="fc-title">Notifications Auto</div><p class="fc-txt">Email automatique à chaque match, message, visite ou alerte Flamme. Ne manquez rien.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ INSCRIPTION ══ -->
+<section class="sec rsec" id="inscription">
+  <div class="w">
+    <div class="sh">
+      <div class="slabel">Rejoindre ÉRÉNIK</div>
+      <h2>Créez votre <em>profil gratuit</em></h2>
+    </div>
+    <div class="ri">
+      <div class="fbox">
+        <div class="ftitle">Inscription</div>
+        <div class="frow">
+          <div class="fgrp"><label>Prénom *</label><input type="text" id="prenom" placeholder="Marie"></div>
+          <div class="fgrp"><label>Nom *</label><input type="text" id="nom" placeholder="Dupont"></div>
+        </div>
+        <div class="fgrp"><label>Email *</label><input type="email" id="email" placeholder="marie@exemple.com"></div>
+        <div class="fgrp"><label>Mot de passe *</label><input type="password" id="mdp" placeholder="Minimum 8 caractères"></div>
+        <div class="fgrp"><label>Mon orientation *</label>
+          <select id="orient">
+            <option value="">Choisir mon profil...</option>
+            <option>👫 Hétérosexuel(le) — Homme cherche Femme</option>
+            <option>👫 Hétérosexuel(le) — Femme cherche Homme</option>
+            <option>🏳️‍🌈 Gay — Homme cherche Homme</option>
+            <option>👭 Lesbienne — Femme cherche Femme</option>
+            <option>💜 Bisexuel(le) — Ouvert(e)</option>
+            <option>🏳️‍⚧️ Trans — Homme trans</option>
+            <option>🏳️‍⚧️ Trans — Femme trans</option>
+            <option>🌈 Non-binaire / Queer</option>
+            <option>🌟 Senior 50+</option>
+            <option>🌍 Diaspora Africaine</option>
+          </select>
+        </div>
+        <div class="frow">
+          <div class="fgrp"><label>Âge *</label><input type="number" id="age" placeholder="28" min="18" max="99"></div>
+          <div class="fgrp"><label>Pays *</label>
+            <select id="pays">
+              <option value="">Votre pays...</option>
+              <option>🇫🇷 France</option><option>🇨🇮 Côte d'Ivoire</option><option>🇸🇳 Sénégal</option><option>🇨🇲 Cameroun</option><option>🇲🇱 Mali</option><option>🇲🇦 Maroc</option><option>🇩🇿 Algérie</option><option>🇹🇳 Tunisie</option><option>🇨🇩 Congo RDC</option><option>🇧🇯 Bénin</option><option>🇹🇬 Togo</option><option>🇧🇫 Burkina Faso</option><option>🇬🇳 Guinée</option><option>🇲🇬 Madagascar</option><option>🇳🇬 Nigeria</option><option>🇬🇭 Ghana</option><option>🇨🇦 Canada</option><option>🇧🇪 Belgique</option><option>🇨🇭 Suisse</option><option>🇪🇸 Espagne</option><option>🇮🇹 Italie</option><option>🇵🇹 Portugal</option><option>🇩🇪 Allemagne</option><option>🇷🇺 Russie</option><option>🇧🇷 Brésil</option><option>🇺🇸 États-Unis</option><option>🇨🇳 Chine</option><option>🌍 Autre</option>
+            </select>
+          </div>
+        </div>
+        <button class="btn-reg" id="btnReg" onclick="handleReg()">Créer mon profil gratuit ♥</button>
+        <p class="fnote">🔒 Gratuit la 1ère semaine · Aucune carte requise · Données sécurisées</p>
+      </div>
+      <div>
+        <div class="slabel" style="margin-bottom:16px">Comment ça marche</div>
+        <ul class="steps-list">
+          <li><div class="snum">1</div><div><strong>Créez votre profil</strong>Renseignez vos informations et votre orientation.</div></li>
+          <li><div class="snum">2</div><div><strong>7 Questions de l'Âme</strong>Notre algorithme calcule votre compatibilité unique.</div></li>
+          <li><div class="snum">3</div><div><strong>Recevez votre Flamme</strong>Une âme compatible identifiée chaque jour.</div></li>
+          <li><div class="snum">4</div><div><strong>Tchat instantané</strong>Envoyez un message et laissez la magie opérer.</div></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ TARIFS ══ -->
+<section class="sec" id="tarifs">
+  <div class="w">
+    <div class="sh">
+      <div class="slabel">Abonnements</div>
+      <h2>Des formules pour <em>tout le monde</em></h2>
+      <p>Commencez gratuitement. Passez Premium pour la Flamme Érénik, le tchat illimité et toutes les fonctionnalités.</p>
+    </div>
+    <div class="price-grid">
+      <div class="pc">
+        <div class="pplan">Gratuit</div>
+        <div class="pamount">0</div>
+        <div class="pper">Pour toujours</div>
+        <ul class="plist"><li>Profil complet</li><li>10 messages/jour</li><li>Recherche basique</li><li>1 photo</li></ul>
+        <button class="btn-p" onclick="go('inscription')">Commencer</button>
+      </div>
+      <div class="pc hot">
+        <div class="hbadge">♥ Populaire</div>
+        <div class="pplan">Mensuel</div>
+        <div class="pamount"><span class="pcur">F</span>1 000</div>
+        <div class="pper">CFA / mois · ~1,50 €</div>
+        <ul class="plist"><li>🔥 Flamme Érénik quotidienne</li><li>💬 Tchat illimité</li><li>Photos illimitées</li><li>Recherche avancée</li><li>Profil mis en avant</li></ul>
+        <button class="btn-p" onclick="openPay('Mensuel — 1 000 F CFA')">Souscrire</button>
+      </div>
+      <div class="pc">
+        <div class="pplan">Trimestriel</div>
+        <div class="pamount"><span class="pcur">F</span>2 500</div>
+        <div class="pper">CFA / 3 mois · −17%</div>
+        <ul class="plist"><li>🔥 Flamme Érénik quotidienne</li><li>💬 Tchat illimité</li><li>Tout du Mensuel</li><li>Badge Vérifié ✓</li></ul>
+        <button class="btn-p" onclick="openPay('Trimestriel — 2 500 F CFA')">Souscrire</button>
+      </div>
+      <div class="pc">
+        <div class="pplan">Annuel</div>
+        <div class="pamount"><span class="pcur">F</span>8 000</div>
+        <div class="pper">CFA / an · −33%</div>
+        <ul class="plist"><li>🔥 Flamme Érénik quotidienne</li><li>💬 Tchat illimité</li><li>Tout du Trimestriel</li><li>Profil TOP en 1er</li></ul>
+        <button class="btn-p" onclick="openPay('Annuel — 8 000 F CFA')">Souscrire</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ PAIEMENTS ══ -->
+<section class="sec sec-alt" id="paiements">
+  <div class="w">
+    <div class="sh">
+      <div class="slabel">Paiements</div>
+      <h2>Payez comme <em>vous voulez</em></h2>
+      <p>Toutes les méthodes mondiales acceptées. Paiement sécurisé et instantané.</p>
+    </div>
+    <div class="pay-grid">
+      <div class="pay-item">📱 Wave CI</div>
+      <div class="pay-item">📱 Orange Money CI</div>
+      <div class="pay-item">📱 MTN MoMo CI</div>
+      <div class="pay-item">📱 Moov Money CI</div>
+      <div class="pay-item">📱 DJAMO CI</div>
+      <div class="pay-item">📱 Wave Sénégal</div>
+      <div class="pay-item">💳 Visa / Mastercard</div>
+      <div class="pay-item">💳 PayPal</div>
+      <div class="pay-item">📲 PayDunya</div>
+      <div class="pay-item">🌐 WeChat Pay</div>
+      <div class="pay-item">🌐 Alipay</div>
+      <div class="pay-item">🏦 Virement</div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ FOOTER ══ -->
+<footer>
+  <div class="w">
+    <a href="#top" class="logo-wrap">
+      <svg width="32" height="32" viewBox="0 0 200 200" fill="none">
+        <defs><linearGradient id="f-g" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#F5D98A"/><stop offset="50%" stop-color="#C8952A"/><stop offset="100%" stop-color="#E0B44A"/></linearGradient><linearGradient id="f-r" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#F0A0B2"/><stop offset="100%" stop-color="#D4687E"/></linearGradient></defs>
+        <circle cx="100" cy="100" r="96" fill="#1A0408" stroke="url(#f-g)" stroke-width="3"/>
+        <path d="M62 130 C62 130 45 118 45 104 C45 96 50 90 58 88 C62 87 66 88 69 90 C70 83 72 77 76 73 C80 69 85 67 90 67 C90 67 88 75 87 82 C83 85 80 90 78 96 C76 103 76 112 78 120 C73 125 68 128 62 130Z" fill="url(#f-g)" opacity="0.9"/>
+        <ellipse cx="82" cy="58" rx="10" ry="12" fill="url(#f-g)" opacity="0.9"/>
+        <path d="M138 130 C138 130 155 118 155 104 C155 96 150 90 142 88 C138 87 134 88 131 90 C130 83 128 77 124 73 C120 69 115 67 110 67 C110 67 112 75 113 82 C117 85 120 90 122 96 C124 103 124 112 122 120 C127 125 132 128 138 130Z" fill="url(#f-r)" opacity="0.9"/>
+        <path d="M100 145 C100 145 75 128 75 112 C75 104 81 98 89 98 C93 98 97 100 100 104 C103 100 107 98 111 98 C119 98 125 104 125 112 C125 128 100 145 100 145Z" fill="#8B0000" stroke="url(#f-g)" stroke-width="1.5"/>
+      </svg>
+      <div class="logo-wordmark">
+        <span class="logo-name" style="font-size:1.28rem">ÉRÉNIK</span>
+        <span class="logo-sub">Rencontres mondiales</span>
+      </div>
+    </a>
+    <p style="font-size:0.8rem;color:var(--muted);line-height:1.75;max-width:270px;margin-top:11px">Le site de rencontre mondial inclusif. 190+ pays. 7 langues. Tchat instantané. Toutes orientations bienvenues.</p>
+    <div class="flinks">
+      <div class="fcol">
+        <h4>Navigation</h4>
+        <ul>
+          <li><a href="#flamme">🔥 Flamme Érénik</a></li>
+          <li><a href="#" onclick="showChat(true);return false">💬 Tchat</a></li>
+          <li><a href="#categories">Rencontres</a></li>
+          <li><a href="#inscription">S'inscrire</a></li>
+          <li><a href="#tarifs">Tarifs</a></li>
+        </ul>
+      </div>
+      <div class="fcol">
+        <h4>Aide & Légal</h4>
+        <ul>
+          <li><a href="#">FAQ</a></li>
+          <li><a href="#">Support</a></li>
+          <li><a href="#">Confidentialité</a></li>
+          <li><a href="#">CGU</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="fbot">
+      <span>© 2025 ÉRÉNIK · erenik.vercel.app · Tous droits réservés · 🏳️‍🌈 Site inclusif</span>
+      <div class="flangs">
+        <a href="#" onclick="document.getElementById('langScreen').classList.remove('hidden');return false">FR</a>
+        <a href="#">EN</a><a href="#">ES</a><a href="#">PT</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- ══ BOTTOM NAV ══ -->
+<nav class="bnav">
+  <button class="bn on" id="bn-home" onclick="showChat(false);go('top');act(this)"><span class="bn-i">🏠</span>Accueil</button>
+  <button class="bn" id="bn-flamme" onclick="showChat(false);go('flamme');act(this)"><span class="bn-i">🔥</span>Flamme</button>
+  <button class="bn" id="bn-chat" onclick="showChat(true);act(this)">
+    <span class="bn-i">
+      <span class="bn-badge">💬<span class="notif-dot"></span></span>
+    </span>Tchat
+  </button>
+  <button class="bn" id="bn-reg" onclick="showChat(false);go('inscription');act(this)"><span class="bn-i">✨</span>Rejoindre</button>
+  <button class="bn" id="bn-tarifs" onclick="showChat(false);go('tarifs');act(this)"><span class="bn-i">💎</span>Tarifs</button>
+</nav>
+
+<!-- ══ MODAL PAIEMENT ══ -->
+<div class="overlay" id="overlay" onclick="oClick(event)">
+  <div class="modal">
+    <button class="mclose" onclick="closeM()">✕</button>
+    <h3>Paiement sécurisé</h3>
+    <p class="msub" id="mlabel">Choisissez votre méthode</p>
+    <div class="mbtns">
+      <button class="mpay" onclick="pay('Wave CI')">📱 Wave — Côte d'Ivoire</button>
+      <button class="mpay" onclick="pay('Orange Money CI')">📱 Orange Money CI</button>
+      <button class="mpay" onclick="pay('MTN MoMo CI')">📱 MTN MoMo CI</button>
+      <button class="mpay" onclick="pay('Moov Money')">📱 Moov Money CI</button>
+      <button class="mpay" onclick="pay('Carte bancaire')">💳 Carte bancaire internationale</button>
+      <button class="mpay" onclick="pay('PayPal')">💳 PayPal</button>
+    </div>
+    <p style="font-size:0.68rem;color:var(--muted);margin-top:12px;text-align:center">🔒 Paiement 100% sécurisé via PayDunya</p>
+  </div>
+</div>
+
+<script>
+// ═══ PÉTALES ═══
+(function(){
+  const c=document.getElementById('petals');
+  const e=['🌹','❤️','💕','🌸','💖','✨','🌺','💗','🔥','🌷'];
+  for(let i=0;i<22;i++){
+    const p=document.createElement('div');p.className='petal';
+    p.textContent=e[Math.floor(Math.random()*e.length)];
+    p.style.cssText='left:'+Math.random()*100+'%;font-size:'+(0.6+Math.random()*0.8)+'rem;animation-duration:'+(9+Math.random()*14)+'s;animation-delay:'+Math.random()*14+'s';
+    c.appendChild(p);
+  }
+})();
+
+// ═══ NAV ═══
+function go(id){const e=document.getElementById(id);if(e)e.scrollIntoView({behavior:'smooth'})}
+function act(el){document.querySelectorAll('.bn').forEach(b=>b.classList.remove('on'));el.classList.add('on')}
+
+// ═══ LANGUE ═══
+const T={
+  fr:{tagline:'Rencontres mondiales',h1:"L'amour n'a pas<br><em>de frontières</em>",desc:'Connectez-vous à des âmes du monde entier. Rencontres sincères, profils vérifiés, tchat instantané.'},
+  en:{tagline:'Global matchmaking',h1:"Love has no<br><em>borders</em>",desc:'Connect with souls from around the world. Sincere meetings, verified profiles, instant chat.'},
+  es:{tagline:'Encuentros mundiales',h1:"El amor no tiene<br><em>fronteras</em>",desc:'Conéctese con almas de todo el mundo. Chat instantáneo disponible.'},
+  it:{tagline:'Incontri mondiali',h1:"L'amore non ha<br><em>confini</em>",desc:'Connettiti con anime di tutto il mondo. Chat istantanea disponibile.'},
+  pt:{tagline:'Encontros mundiais',h1:"O amor não tem<br><em>fronteiras</em>",desc:'Conecte-se com almas de todo o mundo. Chat instantâneo disponível.'},
+  ru:{tagline:'Знакомства по всему миру',h1:"Любовь не знает<br><em>границ</em>",desc:'Общайтесь с душами со всего мира. Мгновенный чат доступен.'},
+  de:{tagline:'Weltweites Dating',h1:"Liebe kennt keine<br><em>Grenzen</em>",desc:'Verbinden Sie sich mit Seelen aus aller Welt. Sofort-Chat verfügbar.'},
+  ar:{tagline:'مواعدة عالمية',h1:"الحب لا<br><em>حدود له</em>",desc:'تواصل مع أرواح من جميع أنحاء العالم.'},
+};
+function setLang(code,flag){
+  document.getElementById('langScreen').classList.add('hidden');
+  document.getElementById('flagBtn').textContent=flag;
+  const t=T[code]||T.fr;
+  document.getElementById('nav-tagline').textContent=t.tagline;
+  document.getElementById('hero-h1').innerHTML=t.h1;
+  document.getElementById('hero-desc').textContent=t.desc;
+  document.getElementById('html-root').setAttribute('dir',code==='ar'?'rtl':'ltr');
+}
+
+// ═══ TCHAT ═══
+let currentConv=null;
+const conversations={
+  'Amina K.':{
+    emoji:'🌸',bg:'rgba(181,68,90,0.2)',online:true,pays:'🇲🇦 Maroc',flamme:true,
+    messages:[
+      {sent:false,text:"Bonjour ! J'ai vu votre profil et je dois dire... votre Flamme Érénik m'a été envoyée ce matin ❤️",time:'14:28'},
+      {sent:false,text:'Êtes-vous disponible pour discuter un peu ? 😊',time:'14:29'},
+      {sent:true,text:'Bonjour Amina ! Quel hasard, j\'ai reçu la même alerte ! 🔥',time:'14:31'},
+      {sent:false,text:'Ce n\'est pas un hasard, c\'est la Flamme Érénik 😄 Notre compatibilité est de 94% !',time:'14:32'},
+    ]
+  },
+  'Kouassi M.':{
+    emoji:'🌟',bg:'rgba(200,149,42,0.2)',online:true,pays:"🇨🇮 Côte d'Ivoire",flamme:false,
+    messages:[
+      {sent:false,text:'Bonjour ! Je suis Kouassi, de Côte d\'Ivoire 🇨🇮',time:'12:10'},
+      {sent:true,text:'Bonjour Kouassi ! Ravi de vous rencontrer sur ÉRÉNIK',time:'12:12'},
+      {sent:false,text:'Très heureux de vous avoir rencontré ici 😊',time:'12:15'},
+    ]
+  },
+  'Sophie R.':{
+    emoji:'💜',bg:'rgba(123,79,166,0.2)',online:false,pays:'🇫🇷 France',flamme:false,
+    messages:[
+      {sent:true,text:'Bonjour Sophie ! Votre profil est vraiment intéressant 🌹',time:'Hier'},
+      {sent:false,text:'Merci beaucoup ! Le vôtre aussi 😊',time:'Hier'},
+      {sent:true,text:'À bientôt j\'espère ! 🌹',time:'Hier'},
+    ]
+  },
+  'Marco L.':{
+    emoji:'🌺',bg:'rgba(46,157,143,0.2)',online:false,pays:'🇮🇹 Italie',flamme:false,
+    messages:[
+      {sent:false,text:'Ciao bella ! Come stai? 🇮🇹',time:'Lun.'},
+      {sent:true,text:'Ciao Marco ! Très bien merci 😊',time:'Lun.'},
+    ]
+  },
+  'Fatou D.':{
+    emoji:'🌍',bg:'rgba(42,157,143,0.2)',online:true,pays:'🇸🇳 Sénégal',flamme:false,
+    messages:[
+      {sent:false,text:'Bonjour ! Belle rencontre sur ÉRÉNIK 🌍',time:'Sam.'},
+      {sent:true,text:'Bonjour Fatou ! Oui, je suis ravi d\'être ici',time:'Sam.'},
+      {sent:false,text:'Vous êtes de quel pays exactement ?',time:'Sam.'},
+    ]
+  }
+};
+
+function showChat(show){
+  const cs=document.getElementById('chatScreen');
+  if(show){
+    cs.classList.add('visible');
+    document.querySelector('main-content')&&(document.querySelector('main-content').style.display='none');
+    act(document.getElementById('bn-chat'));
+    // Cacher le badge
+    document.querySelector('.notif-dot')&&(document.querySelector('.notif-dot').style.display='none');
+  } else {
+    cs.classList.remove('visible');
+    closeConv();
+  }
+}
+
+function openConv(name,emoji,shortName,pays,online){
+  currentConv=name;
+  document.getElementById('chatList').style.display='none';
+  const cw=document.getElementById('chatWindow');
+  cw.classList.add('visible');
+  document.getElementById('convAvatarSm').textContent=emoji;
+  document.getElementById('convAvatarSm').style.background=conversations[name]?.bg||'rgba(181,68,90,0.2)';
+  document.getElementById('convName').textContent=name+(conversations[name]?.flamme?' 🔥':'');
+  document.getElementById('convStatus').textContent=online?'● En ligne maintenant':'◌ Vu récemment';
+  document.getElementById('convStatus').style.color=online?'#2A9D5C':var_muted();
+  renderMessages(name);
+}
+
+function var_muted(){return '#8A8090'}
+
+function renderMessages(name){
+  const msgs=conversations[name]?.messages||[];
+  const container=document.getElementById('chatMessages');
+  const conv=conversations[name];
+  let html='';
+  if(conv?.flamme){
+    html+=`<div class="flame-match">🔥 Vous êtes <span>Flamme Érénik à 94%</span> avec ${name.split(' ')[0]} !</div>`;
+  }
+  msgs.forEach(m=>{
+    html+=`<div class="msg msg-${m.sent?'sent':'recv'}">
+      <div class="msg-bubble">${m.text}</div>
+      <div class="msg-time">${m.time}${m.sent?' ✓✓':''}</div>
+    </div>`;
+  });
+  container.innerHTML=html;
+  container.scrollTop=container.scrollHeight;
+}
+
+function sendMsg(){
+  const input=document.getElementById('msgInput');
+  const text=input.value.trim();
+  if(!text||!currentConv)return;
+  const msgs=conversations[currentConv].messages;
+  const now=new Date();
+  const time=now.getHours()+':'+String(now.getMinutes()).padStart(2,'0');
+  msgs.push({sent:true,text,time});
+  input.value='';
+  renderMessages(currentConv);
+  // Réponse automatique après 1.5s
+  setTimeout(()=>{
+    const replies=["Merci pour votre message 😊","C'est très gentil ❤️","Je vous lis avec plaisir !","Comme c'est beau de se retrouver ici 🌹","Vous êtes vraiment quelqu'un de bien 💕"];
+    const reply=replies[Math.floor(Math.random()*replies.length)];
+    conversations[currentConv].messages.push({sent:false,text:reply,time:new Date().getHours()+':'+String(new Date().getMinutes()).padStart(2,'0')});
+    renderMessages(currentConv);
+  },1500);
+}
+
+function closeConv(){
+  document.getElementById('chatList').style.display='flex';
+  document.getElementById('chatList').style.flexDirection='column';
+  document.getElementById('chatWindow').classList.remove('visible');
+  currentConv=null;
+}
+
+// ═══ INSCRIPTION ═══
+function handleReg(){
+  const p=document.getElementById('prenom').value.trim();
+  const e=document.getElementById('email').value.trim();
+  const m=document.getElementById('mdp').value.trim();
+  const o=document.getElementById('orient').value;
+  if(!p||!e||!m||!o){showToast('⚠️ Remplissez tous les champs.','error');return}
+  if(m.length<8){showToast('⚠️ Mot de passe minimum 8 caractères.','error');return}
+  showToast('🎉 Bienvenue sur ÉRÉNIK, '+p+' ! Votre profil est créé.','success');
+  setTimeout(()=>{go('tarifs')},2000);
+}
+
+// ═══ PAIEMENT ═══
+function openPay(plan){document.getElementById('mlabel').textContent='Plan : '+plan;document.getElementById('overlay').classList.add('on')}
+function closeM(){document.getElementById('overlay').classList.remove('on')}
+function oClick(e){if(e.target===document.getElementById('overlay'))closeM()}
+function pay(method){closeM();showToast('✓ Redirection vers '+method+'...','info')}
+
+// ═══ TOAST ═══
+function showToast(msg,type='info'){
+  const t=document.getElementById('toast');
+  t.textContent=msg;t.className='toast '+type+' on';
+  setTimeout(()=>t.classList.remove('on'),3500);
+}
+</script>
+</body>
+</html>

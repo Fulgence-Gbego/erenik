@@ -235,7 +235,6 @@ input,select,textarea{font-family:'Jost',sans-serif}
 .btn-reg:hover{opacity:0.9;transform:translateY(-1px)}
 .btn-reg:disabled{opacity:0.6;cursor:not-allowed;transform:none}
 .fnote{font-size:0.66rem;color:var(--muted);text-align:center;margin-top:9px;line-height:1.6}
-.modal .fgrp label{display:block;font-size:0.59rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--muted);margin-bottom:5px}
 .steps-list{list-style:none}
 .steps-list li{display:flex;gap:11px;align-items:flex-start;margin-bottom:15px;font-size:0.81rem;color:var(--muted);line-height:1.65}
 .snum{min-width:24px;height:24px;border:1px solid var(--rose2);color:var(--rose2);font-family:'Cormorant Garamond',serif;font-size:0.88rem;display:flex;align-items:center;justify-content:center;flex-shrink:0}
@@ -422,11 +421,15 @@ footer{background:var(--bg3);border-top:1px solid var(--border);padding:38px 20p
   <div class="ls-name">ÉRÉNIK</div>
   <div class="ls-sub">Rencontres Amoureuses Africaines & Mondiales</div>
   <h2 class="ls-title">Choisissez votre langue</h2>
-  <div class="lang-grid" style="grid-template-columns:1fr 1fr;max-width:280px">
+  <div class="lang-grid">
     <button class="lang-btn" onclick="setLang('fr','🇫🇷')"><span style="font-size:1.3rem">🇫🇷</span><span class="lname"><span class="lnative">Français</span><span class="llocal">French</span></span></button>
     <button class="lang-btn" onclick="setLang('en','🇬🇧')"><span style="font-size:1.3rem">🇬🇧</span><span class="lname"><span class="lnative">English</span><span class="llocal">Anglais</span></span></button>
-    <button class="lang-btn" onclick="setLang('it','🇮🇹')"><span style="font-size:1.3rem">🇮🇹</span><span class="lname"><span class="lnative">Italiano</span><span class="llocal">Italien</span></span></button>
     <button class="lang-btn" onclick="setLang('es','🇪🇸')"><span style="font-size:1.3rem">🇪🇸</span><span class="lname"><span class="lnative">Español</span><span class="llocal">Espagnol</span></span></button>
+    <button class="lang-btn" onclick="setLang('it','🇮🇹')"><span style="font-size:1.3rem">🇮🇹</span><span class="lname"><span class="lnative">Italiano</span><span class="llocal">Italien</span></span></button>
+    <button class="lang-btn" onclick="setLang('pt','🇵🇹')"><span style="font-size:1.3rem">🇵🇹</span><span class="lname"><span class="lnative">Português</span><span class="llocal">Portugais</span></span></button>
+    <button class="lang-btn" onclick="setLang('ru','🇷🇺')"><span style="font-size:1.3rem">🇷🇺</span><span class="lname"><span class="lnative">Русский</span><span class="llocal">Russe</span></span></button>
+    <button class="lang-btn" onclick="setLang('de','🇩🇪')"><span style="font-size:1.3rem">🇩🇪</span><span class="lname"><span class="lnative">Deutsch</span><span class="llocal">Allemand</span></span></button>
+    <button class="lang-btn" onclick="setLang('ar','🌍')"><span style="font-size:1.3rem">🌍</span><span class="lname"><span class="lnative">العربية</span><span class="llocal">Arabe</span></span></button>
   </div>
 </div>
 
@@ -452,7 +455,6 @@ footer{background:var(--bg3);border-top:1px solid var(--border);padding:38px 20p
       <button class="a-tab" onclick="switchTab('members',this)">👥 Membres</button>
       <button class="a-tab" onclick="switchTab('payments',this)">💰 Paiements</button>
       <button class="a-tab" onclick="switchTab('reports',this)">🚨 Signalements</button>
-      <button class="a-tab" onclick="switchTab('pubs',this)">📢 Publicités</button>
     </div>
     <div class="a-tab-content on" id="tab-stats">
       <div class="a-stats">
@@ -472,76 +474,6 @@ footer{background:var(--bg3);border-top:1px solid var(--border);padding:38px 20p
       <div class="mcard"><div class="mcard-name">⚠️ Profil signalé</div><div class="mcard-info">Signalé par 3 membres · 📅 Aujourd'hui</div><div><button class="abtn abtn-block" onclick="showToast('✓ Profil supprimé','error')">✕ Supprimer</button><button class="abtn abtn-ok" onclick="showToast('✓ Profil validé','success')">✓ Garder</button></div></div>
       <div style="text-align:center;padding:14px;color:var(--muted);font-size:0.8rem">Aucun autre signalement ✓</div>
     </div>
-
-    <div class="a-tab-content" id="tab-pubs">
-      <div style="background:var(--card);border:1px solid var(--border);padding:16px;margin-bottom:14px;box-shadow:var(--shadow)">
-        <div style="font-size:0.62rem;letter-spacing:0.14em;text-transform:uppercase;color:var(--rose2);margin-bottom:12px">📢 Tarifs Publicitaires ÉRÉNIK</div>
-        <div style="font-size:0.8rem;color:var(--muted);line-height:2">
-          📱 <strong style="color:var(--text)">Bannière 1 semaine</strong> → 25 000 F CFA<br>
-          📅 <strong style="color:var(--text)">Bannière 1 mois</strong> → 75 000 F CFA<br>
-          🌟 <strong style="color:var(--text)">Bannière 3 mois</strong> → 180 000 F CFA<br>
-          🏆 <strong style="color:var(--text)">Partenaire exclusif</strong> → 350 000 F CFA/mois<br>
-          📲 <strong style="color:var(--text)">Post sponsorisé Facebook</strong> → 15 000 F CFA
-        </div>
-      </div>
-
-      <div style="background:var(--card);border:1px solid var(--border);padding:16px;margin-bottom:14px;box-shadow:var(--shadow)">
-        <div style="font-size:0.62rem;letter-spacing:0.14em;text-transform:uppercase;color:var(--rose2);margin-bottom:12px">🖼️ Bannière 1 — Après Hero</div>
-        <div class="fgrp" style="margin-bottom:8px">
-          <label style="display:block;font-size:0.59rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--muted);margin-bottom:5px">Lien URL de la marque</label>
-          <input type="text" id="pub1-link" placeholder="https://marque.com" style="width:100%;padding:9px;background:var(--bg);border:1px solid var(--border);color:var(--text);font-size:0.82rem;outline:none">
-        </div>
-        <div class="fgrp" style="margin-bottom:8px">
-          <label style="display:block;font-size:0.59rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--muted);margin-bottom:5px">URL de l'image publicitaire</label>
-          <input type="text" id="pub1-img" placeholder="https://exemple.com/banniere.jpg" style="width:100%;padding:9px;background:var(--bg);border:1px solid var(--border);color:var(--text);font-size:0.82rem;outline:none">
-        </div>
-        <div style="display:flex;gap:8px">
-          <button onclick="activerPub(1)" style="flex:1;padding:9px;background:linear-gradient(135deg,var(--green),#4CAF50);color:#fff;border:none;font-size:0.72rem;font-weight:600;cursor:pointer">✓ Activer</button>
-          <button onclick="desactiverPub(1)" style="flex:1;padding:9px;background:rgba(212,68,60,0.08);border:1px solid var(--red);color:var(--red);font-size:0.72rem;font-weight:600;cursor:pointer">✕ Désactiver</button>
-        </div>
-      </div>
-
-      <div style="background:var(--card);border:1px solid var(--border);padding:16px;margin-bottom:14px;box-shadow:var(--shadow)">
-        <div style="font-size:0.62rem;letter-spacing:0.14em;text-transform:uppercase;color:var(--rose2);margin-bottom:12px">🖼️ Bannière 2 — Avant Footer</div>
-        <div class="fgrp" style="margin-bottom:8px">
-          <label style="display:block;font-size:0.59rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--muted);margin-bottom:5px">Lien URL de la marque</label>
-          <input type="text" id="pub2-link" placeholder="https://marque.com" style="width:100%;padding:9px;background:var(--bg);border:1px solid var(--border);color:var(--text);font-size:0.82rem;outline:none">
-        </div>
-        <div class="fgrp" style="margin-bottom:8px">
-          <label style="display:block;font-size:0.59rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--muted);margin-bottom:5px">URL de l'image publicitaire</label>
-          <input type="text" id="pub2-img" placeholder="https://exemple.com/banniere.jpg" style="width:100%;padding:9px;background:var(--bg);border:1px solid var(--border);color:var(--text);font-size:0.82rem;outline:none">
-        </div>
-        <div style="display:flex;gap:8px">
-          <button onclick="activerPub(2)" style="flex:1;padding:9px;background:linear-gradient(135deg,var(--green),#4CAF50);color:#fff;border:none;font-size:0.72rem;font-weight:600;cursor:pointer">✓ Activer</button>
-          <button onclick="desactiverPub(2)" style="flex:1;padding:9px;background:rgba(212,68,60,0.08);border:1px solid var(--red);color:var(--red);font-size:0.72rem;font-weight:600;cursor:pointer">✕ Désactiver</button>
-        </div>
-      </div>
-
-      <div style="background:var(--card);border:1px solid var(--border);padding:16px;margin-bottom:14px;box-shadow:var(--shadow)">
-        <div style="font-size:0.62rem;letter-spacing:0.14em;text-transform:uppercase;color:var(--rose2);margin-bottom:12px">🖼️ Bannière 3 — Section Partenaires</div>
-        <div class="fgrp" style="margin-bottom:8px">
-          <label style="display:block;font-size:0.59rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--muted);margin-bottom:5px">Lien URL de la marque</label>
-          <input type="text" id="pub3-link" placeholder="https://marque.com" style="width:100%;padding:9px;background:var(--bg);border:1px solid var(--border);color:var(--text);font-size:0.82rem;outline:none">
-        </div>
-        <div class="fgrp" style="margin-bottom:8px">
-          <label style="display:block;font-size:0.59rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--muted);margin-bottom:5px">URL de l'image publicitaire</label>
-          <input type="text" id="pub3-img" placeholder="https://exemple.com/banniere.jpg" style="width:100%;padding:9px;background:var(--bg);border:1px solid var(--border);color:var(--text);font-size:0.82rem;outline:none">
-        </div>
-        <div style="display:flex;gap:8px">
-          <button onclick="activerPub(3)" style="flex:1;padding:9px;background:linear-gradient(135deg,var(--green),#4CAF50);color:#fff;border:none;font-size:0.72rem;font-weight:600;cursor:pointer">✓ Activer</button>
-          <button onclick="desactiverPub(3)" style="flex:1;padding:9px;background:rgba(212,68,60,0.08);border:1px solid var(--red);color:var(--red);font-size:0.72rem;font-weight:600;cursor:pointer">✕ Désactiver</button>
-        </div>
-      </div>
-
-      <div style="background:rgba(200,149,42,0.06);border:1px solid rgba(200,149,42,0.2);padding:13px;font-size:0.78rem;color:var(--muted);line-height:1.8">
-        <div style="color:var(--gold);font-size:0.62rem;letter-spacing:0.14em;text-transform:uppercase;margin-bottom:7px">💡 Comment ça marche</div>
-        1. La marque t'envoie son image sur WhatsApp<br>
-        2. Tu uploades l'image sur <strong>imgbb.com</strong> (gratuit)<br>
-        3. Tu copies le lien de l'image<br>
-        4. Tu colles ici et tu actives<br>
-        5. La bannière apparaît sur le site !
-      </div>
-    </div>
   </div>
 </div>
 
@@ -552,7 +484,11 @@ footer{background:var(--bg3);border-top:1px solid var(--border);padding:38px 20p
       <div class="chat-list-title">💬 Messages</div>
       <span class="chat-notif-badge">3 nouvelles</span>
     </div>
-
+    <div class="free-limit-bar">
+      <div style="display:flex;justify-content:space-between;margin-bottom:2px"><span>Messages gratuits utilisés</span><span style="color:var(--rose2)" id="msgCountDisplay">6/10</span></div>
+      <div class="limit-progress"><div class="limit-fill" id="limitFill" style="width:60%"></div></div>
+      <div style="font-size:0.68rem">💎 <span onclick="openPayModal('Premium')" style="color:var(--rose2);cursor:pointer;text-decoration:underline">Messages illimités avec Premium</span></div>
+    </div>
     <div class="flamme-alert">
       <div class="fa-top">🔥 Votre Flamme Érénik du jour</div>
       <div class="fa-title">Aminata K. — 94% compatibilité — En ligne ●</div>
@@ -641,8 +577,8 @@ footer{background:var(--bg3);border-top:1px solid var(--border);padding:38px 20p
   </a>
   <div class="nav-r">
     <button class="flag-btn" id="flagBtn" onclick="document.getElementById('langScreen').classList.remove('hidden')">🇫🇷</button>
-    <button class="nb nb-out" id="btnConnexion" onclick="showLoginModal()">Connexion</button>
-    <button class="nb nb-in" onclick="showMainSite();go('inscription')">S'inscrire</button>
+    <button class="nb nb-out" onclick="showMainSite();go('inscription')">Connexion</button>
+    <button class="nb nb-in" onclick="showMainSite();go('inscription')">Rejoindre</button>
   </div>
 </nav>
 
@@ -714,14 +650,6 @@ footer{background:var(--bg3);border-top:1px solid var(--border);padding:38px 20p
   </div>
 </section>
 
-<!-- ══ BANNIERE PUB 1 ══ -->
-<div id="pub-banner-1" style="background:var(--bg2);border-top:1px solid var(--border);border-bottom:1px solid var(--border);padding:10px 16px;text-align:center;display:none">
-  <a id="pub-link-1" href="#" target="_blank">
-    <img id="pub-img-1" src="" alt="Publicité" style="max-height:80px;max-width:100%;object-fit:contain">
-  </a>
-  <div style="font-size:0.52rem;color:var(--muted);margin-top:3px;letter-spacing:0.1em">PUBLICITÉ</div>
-</div>
-
 <!-- ══ TICKER ══ -->
 <div class="ticker">
   <div class="tk-inner">
@@ -770,69 +698,22 @@ footer{background:var(--bg3);border-top:1px solid var(--border);padding:38px 20p
   </div>
 </section>
 
-<!-- ══ CAROUSEL COUPLES ══ -->
+<!-- ══ PHOTOS ══ -->
 <section class="sec sec-alt" id="photos">
   <div class="w">
     <div class="sh" style="text-align:center">
       <div class="slabel" style="justify-content:center">Histoires vraies</div>
       <h2>Des amours nés sur <em>ÉRÉNIK</em></h2>
-      <p style="text-align:center;max-width:420px;margin:0 auto">Des milliers de couples du monde entier ont trouvé l'amour sur ÉRÉNIK.</p>
     </div>
-    <div class="carousel-wrap" style="position:relative;overflow:hidden;margin-top:24px">
-      <div class="carousel-track" id="carouselTrack" style="display:flex;gap:12px;transition:transform .5s ease;will-change:transform">
-        <div class="carousel-card">
-          <img src="https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?w=360&q=80&fit=crop&crop=faces" alt="Couple" loading="lazy">
-          <div class="carousel-overlay"><span class="carousel-name">Aminata & Kofi</span><span class="carousel-pays">🇸🇳 Sénégal · 🇬🇭 Ghana</span></div>
-        </div>
-        <div class="carousel-card">
-          <img src="https://images.unsplash.com/photo-1516589178581-6cd7833ae3b2?w=360&q=80&fit=crop&crop=faces" alt="Couple" loading="lazy">
-          <div class="carousel-overlay"><span class="carousel-name">Fatou & Marc</span><span class="carousel-pays">🇨🇮 Côte d'Ivoire · 🇫🇷 France</span></div>
-        </div>
-        <div class="carousel-card">
-          <img src="https://images.unsplash.com/photo-1474552226712-ac0f0961a954?w=360&q=80&fit=crop&crop=faces" alt="Couple" loading="lazy">
-          <div class="carousel-overlay"><span class="carousel-name">Sofia & Kwame</span><span class="carousel-pays">🇵🇹 Portugal · 🇨🇩 Congo</span></div>
-        </div>
-        <div class="carousel-card">
-          <img src="https://images.unsplash.com/photo-1499804788191-95e87d04d875?w=360&q=80&fit=crop&crop=faces" alt="Couple" loading="lazy">
-          <div class="carousel-overlay"><span class="carousel-name">Marie & Jean-Paul</span><span class="carousel-pays">🇫🇷 France · 🇧🇯 Bénin</span></div>
-        </div>
-        <div class="carousel-card">
-          <img src="https://images.unsplash.com/photo-1621184455862-c163dfb30e0f?w=360&q=80&fit=crop&crop=faces" alt="Couple" loading="lazy">
-          <div class="carousel-overlay"><span class="carousel-name">Nadia & Ibrahim</span><span class="carousel-pays">🇲🇦 Maroc · 🇨🇲 Cameroun ❤️ Mariés</span></div>
-        </div>
-        <div class="carousel-card">
-          <img src="https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?w=360&q=80&fit=crop&crop=faces" alt="Couple" loading="lazy">
-          <div class="carousel-overlay"><span class="carousel-name">Aïsha & Thomas</span><span class="carousel-pays">🇬🇳 Guinée · 🇨🇦 Canada</span></div>
-        </div>
-        <div class="carousel-card">
-          <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=360&q=80&fit=crop&crop=faces" alt="Couple" loading="lazy">
-          <div class="carousel-overlay"><span class="carousel-name">Ibrahim & Léa</span><span class="carousel-pays">🇸🇳 Sénégal · 🇧🇪 Belgique</span></div>
-        </div>
-        <div class="carousel-card">
-          <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=360&q=80&fit=crop&crop=faces" alt="Couple" loading="lazy">
-          <div class="carousel-overlay"><span class="carousel-name">Yao & Claire</span><span class="carousel-pays">🇹🇬 Togo · 🇨🇭 Suisse</span></div>
-        </div>
-      </div>
-      <button class="carousel-btn carousel-prev" onclick="carouselMove(-1)">‹</button>
-      <button class="carousel-btn carousel-next" onclick="carouselMove(1)">›</button>
+    <div class="photos-grid">
+      <div class="photo-card"><div class="photo-badge-f">🔥 96%</div><img src="https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?w=400&q=80&fit=crop" alt="Couple" loading="lazy"><div class="photo-overlay"><span class="photo-name">Aminata & Kofi</span><div class="photo-info">🇸🇳 · 🇬🇭</div></div></div>
+      <div class="photo-card"><div class="photo-badge-f">🔥 91%</div><img src="https://images.unsplash.com/photo-1516589178581-6cd7833ae3b2?w=400&q=80&fit=crop" alt="Couple" loading="lazy"><div class="photo-overlay"><span class="photo-name">Fatou & Marc</span><div class="photo-info">🇨🇮 · 🇫🇷</div></div></div>
+      <div class="photo-card photo-card-wide"><div class="photo-badge-f">🔥 98% — Mariés ❤️</div><img src="https://images.unsplash.com/photo-1621184455862-c163dfb30e0f?w=800&q=80&fit=crop" alt="Couple" loading="lazy"><div class="photo-overlay"><span class="photo-name">Nadia & Ibrahim — Mariage 2024</span><div class="photo-info">🇲🇦 · 🇨🇲</div></div></div>
+      <div class="photo-card"><div class="photo-badge-f">🔥 89%</div><img src="https://images.unsplash.com/photo-1474552226712-ac0f0961a954?w=400&q=80&fit=crop" alt="Couple" loading="lazy"><div class="photo-overlay"><span class="photo-name">Sofia & Kwame</span><div class="photo-info">🇵🇹 · 🇨🇩</div></div></div>
+      <div class="photo-card"><div class="photo-badge-f">🔥 93%</div><img src="https://images.unsplash.com/photo-1499804788191-95e87d04d875?w=400&q=80&fit=crop" alt="Couple" loading="lazy"><div class="photo-overlay"><span class="photo-name">Marie & Jean-Paul</span><div class="photo-info">🇫🇷 · 🇧🇯</div></div></div>
     </div>
-    <div class="carousel-dots" id="carouselDots" style="display:flex;justify-content:center;gap:6px;margin-top:14px"></div>
   </div>
 </section>
-
-<style>
-.carousel-card{min-width:260px;max-width:260px;position:relative;overflow:hidden;border-radius:8px;flex-shrink:0;aspect-ratio:3/4}
-.carousel-card img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .4s}
-.carousel-card:hover img{transform:scale(1.04)}
-.carousel-overlay{position:absolute;bottom:0;left:0;right:0;padding:14px 12px;background:linear-gradient(to top,rgba(26,16,21,0.88),transparent);display:flex;flex-direction:column;gap:3px}
-.carousel-name{font-family:'Cormorant Garamond',serif;font-size:1rem;color:#fff}
-.carousel-pays{font-size:0.65rem;color:rgba(255,255,255,0.8)}
-.carousel-btn{position:absolute;top:50%;transform:translateY(-50%);background:rgba(255,255,255,0.9);border:none;width:36px;height:36px;border-radius:50%;font-size:1.2rem;cursor:pointer;z-index:10;display:flex;align-items:center;justify-content:center;box-shadow:0 2px 8px rgba(0,0,0,0.15)}
-.carousel-prev{left:8px}
-.carousel-next{right:8px}
-.carousel-dot{width:7px;height:7px;border-radius:50%;background:var(--border);cursor:pointer;transition:background .3s}
-.carousel-dot.on{background:var(--rose2)}
-</style>
 
 <!-- ══ TEMOIGNAGES ══ -->
 <section class="sec sec-dark" id="temoignages">
@@ -842,12 +723,10 @@ footer{background:var(--bg3);border-top:1px solid var(--border);padding:38px 20p
       <h2>Ce qu'ils disent <em>d'ÉRÉNIK</em></h2>
     </div>
     <div class="temo-grid">
-      <div class="temo-card"><p class="temo-text">J'ai essayé beaucoup de sites de rencontres. Aucun ne comprenait ma culture africaine. ÉRÉNIK est différent. En 3 jours j'ai trouvé Kofi. Aujourd'hui nous nous marions en décembre !</p><div class="temo-author"><img class="temo-avatar" src="https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?w=100&q=80&fit=crop&crop=face" alt="Aminata"><div><div class="temo-name">Aminata K., 26 ans</div><div class="temo-pays">🇸🇳 Dakar → fiancée à 🇬🇭 Accra</div><div class="temo-stars">★★★★★</div></div></div></div>
-      <div class="temo-card"><p class="temo-text">ÉRÉNIK m'a connecté avec Léa depuis la Belgique. On s'est retrouvés à Abidjan 2 mois plus tard. C'est la femme de ma vie. Merci ÉRÉNIK !</p><div class="temo-author"><img class="temo-avatar" src="https://images.unsplash.com/photo-1506277886164-e25aa3f4ef7f?w=100&q=80&fit=crop&crop=face" alt="Kofi"><div><div class="temo-name">Kofi A., 31 ans</div><div class="temo-pays">🇨🇮 Abidjan · Entrepreneur</div><div class="temo-stars">★★★★★</div></div></div></div>
-      <div class="temo-card"><p class="temo-text">À 54 ans je pensais que l'amour était derrière moi. ÉRÉNIK m'a prouvé que l'âme sœur n'a pas d'âge. Nous vivons ensemble depuis 6 mois.</p><div class="temo-author"><img class="temo-avatar" src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=100&q=80&fit=crop&crop=face" alt="Marie"><div><div class="temo-name">Marie-Claire D., 54 ans</div><div class="temo-pays">🇫🇷 Lyon · Senior 50+</div><div class="temo-stars">★★★★★</div></div></div></div>
-      <div class="temo-card"><p class="temo-text">Je suis de la diaspora africaine à Montréal. ÉRÉNIK m'a permis de rencontrer Fatou qui partage mes valeurs et mes racines. Simple, gratuit, efficace !</p><div class="temo-author"><img class="temo-avatar" src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&q=80&fit=crop&crop=face" alt="Ibrahim"><div><div class="temo-name">Ibrahim N., 34 ans</div><div class="temo-pays">🇨🇦 Montréal · Diaspora 🇸🇳</div><div class="temo-stars">★★★★★</div></div></div></div>
-      <div class="temo-card"><p class="temo-text">Ce qui m'a séduit c'est la simplicité. Je me suis inscrit en 2 minutes. Le lendemain je chattais avec Nour. 4 mois après, nous sommes inséparables.</p><div class="temo-author"><img class="temo-avatar" src="https://images.unsplash.com/photo-1474552226712-ac0f0961a954?w=100&q=80&fit=crop&crop=face" alt="Kwame"><div><div class="temo-name">Kwame O., 29 ans</div><div class="temo-pays">🇬🇭 Kumasi → amoureux de 🇲🇦 Rabat</div><div class="temo-stars">★★★★★</div></div></div></div>
-      <div class="temo-card"><p class="temo-text">ÉRÉNIK est la seule plateforme qui respecte la femme africaine. Je me suis sentie en sécurité dès le début. J'ai rencontré quelqu'un de sincère et sérieux.</p><div class="temo-author"><img class="temo-avatar" src="https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?w=100&q=80&fit=crop&crop=face" alt="Aïsha"><div><div class="temo-name">Aïsha B., 27 ans</div><div class="temo-pays">🇨🇲 Yaoundé · Médecin</div><div class="temo-stars">★★★★★</div></div></div></div>
+      <div class="temo-card"><p class="temo-text">La Flamme Érénik m'a envoyé un profil un matin. Aujourd'hui nous sommes fiancés. Ce système est magique !</p><div class="temo-author"><img class="temo-avatar" src="https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?w=100&q=80&fit=crop&crop=face" alt="Aminata"><div><div class="temo-name">Aminata K.</div><div class="temo-pays">🇸🇳 Dakar</div><div class="temo-stars">★★★★★</div><div class="flamme-tag">🔥 94%</div></div></div></div>
+      <div class="temo-card"><p class="temo-text">Sur ÉRÉNIK, dès le premier jour j'ai reçu ma Flamme. Trois mois plus tard, on ne se quitte plus !</p><div class="temo-author"><img class="temo-avatar" src="https://images.unsplash.com/photo-1506277886164-e25aa3f4ef7f?w=100&q=80&fit=crop&crop=face" alt="Kofi"><div><div class="temo-name">Kofi A.</div><div class="temo-pays">🇬🇭 Accra</div><div class="temo-stars">★★★★★</div></div></div></div>
+      <div class="temo-card"><p class="temo-text">En tant que senior, je pensais que l'amour n'était plus pour moi. ÉRÉNIK m'a prouvé le contraire !</p><div class="temo-author"><img class="temo-avatar" src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=100&q=80&fit=crop&crop=face" alt="Marie"><div><div class="temo-name">Marie-Claire D.</div><div class="temo-pays">🇫🇷 Lyon · Senior 50+</div><div class="temo-stars">★★★★★</div></div></div></div>
+      <div class="temo-card"><p class="temo-text">De la diaspora africaine au Canada, ÉRÉNIK m'a permis de rencontrer quelqu'un qui partage mes valeurs.</p><div class="temo-author"><img class="temo-avatar" src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&q=80&fit=crop&crop=face" alt="Ibrahim"><div><div class="temo-name">Ibrahim N.</div><div class="temo-pays">🇨🇦 Montréal · Diaspora</div><div class="temo-stars">★★★★★</div></div></div></div>
     </div>
     <div class="success-stats">
       <div class="ss"><span class="ss-n" style="color:var(--rose2)">2 847</span><span class="ss-l">Couples formés</span></div>
@@ -946,38 +825,13 @@ footer{background:var(--bg3);border-top:1px solid var(--border);padding:38px 20p
   </div>
 </section>
 
-<!-- ══ GRATUIT ══ -->
+<!-- ══ TARIFS ══ -->
 <section class="sec" id="tarifs">
   <div class="w">
-    <div class="sh" style="text-align:center">
-      <div class="slabel" style="justify-content:center">100% Gratuit</div>
-      <h2>ÉRÉNIK est <em>entièrement gratuit</em></h2>
-      <p style="max-width:500px;margin:0 auto">Inscrivez-vous gratuitement et commencez à tchatter immédiatement. Aucun abonnement, aucune carte bancaire requise.</p>
-    </div>
-    <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;max-width:500px;margin:0 auto">
-      <div style="background:var(--card);border:1px solid var(--border);padding:20px;text-align:center;box-shadow:var(--shadow)">
-        <div style="font-size:2rem;margin-bottom:8px">💬</div>
-        <div style="font-family:'Cormorant Garamond',serif;font-size:1.1rem;margin-bottom:5px;color:var(--text)">Chat illimité</div>
-        <div style="font-size:0.75rem;color:var(--muted)">Envoyez autant de messages que vous voulez</div>
-      </div>
-      <div style="background:var(--card);border:1px solid var(--border);padding:20px;text-align:center;box-shadow:var(--shadow)">
-        <div style="font-size:2rem;margin-bottom:8px">🔥</div>
-        <div style="font-family:'Cormorant Garamond',serif;font-size:1.1rem;margin-bottom:5px;color:var(--text)">Flamme Érénik</div>
-        <div style="font-size:0.75rem;color:var(--muted)">Votre âme sœur chaque matin</div>
-      </div>
-      <div style="background:var(--card);border:1px solid var(--border);padding:20px;text-align:center;box-shadow:var(--shadow)">
-        <div style="font-size:2rem;margin-bottom:8px">💑</div>
-        <div style="font-family:'Cormorant Garamond',serif;font-size:1.1rem;margin-bottom:5px;color:var(--text)">Matching gratuit</div>
-        <div style="font-size:0.75rem;color:var(--muted)">Likez et matchez sans limite</div>
-      </div>
-      <div style="background:var(--card);border:1px solid var(--border);padding:20px;text-align:center;box-shadow:var(--shadow)">
-        <div style="font-size:2rem;margin-bottom:8px">🛡️</div>
-        <div style="font-family:'Cormorant Garamond',serif;font-size:1.1rem;margin-bottom:5px;color:var(--text)">100% Sécurisé</div>
-        <div style="font-size:0.75rem;color:var(--muted)">Profils vérifiés, modération 24/7</div>
-      </div>
-    </div>
-    <div style="text-align:center;margin-top:24px">
-      <button class="btn-main" onclick="showMainSite();go('inscription')" style="padding:15px 35px;font-size:0.9rem">✨ S'inscrire gratuitement</button>
+    <div class="sh">
+      <div class="slabel">Abonnements</div>
+      <h2>Des formules pour <em>tout le monde</em></h2>
+      <p>Commencez gratuitement. Passez Premium pour tout débloquer.</p>
     </div>
     <div class="price-grid">
       <div class="pc">
@@ -995,12 +849,11 @@ footer{background:var(--bg3);border-top:1px solid var(--border);padding:38px 20p
       <div class="pc">
         <div class="pplan">Hebdomadaire</div>
         <div class="pamount"><span class="pcur">F</span>500</div>
-        <div class="pper">CFA / semaine · ~0,75 €</div>
+        <div class="pper">CFA / semaine</div>
         <ul class="plist">
           <li class="prem">🔥 Flamme Érénik</li>
           <li class="prem">💬 Messages illimités</li>
           <li class="prem">Conversations illimitées</li>
-          <li>3 photos de profil</li>
         </ul>
         <button class="btn-p" onclick="openPayModal('Hebdomadaire — 500 F CFA')">Souscrire</button>
       </div>
@@ -1019,26 +872,14 @@ footer{background:var(--bg3);border-top:1px solid var(--border);padding:38px 20p
         <button class="btn-p" onclick="openPayModal('Mensuel — 1 000 F CFA')">Souscrire</button>
       </div>
       <div class="pc">
-        <div class="pplan">Trimestriel</div>
-        <div class="pamount"><span class="pcur">F</span>2 500</div>
-        <div class="pper">CFA / 3 mois · −17%</div>
-        <ul class="plist">
-          <li class="prem">🔥 Tout du Mensuel</li>
-          <li class="prem">💎 3 mois au prix de 2,5</li>
-          <li class="prem">🎯 Filtres avancés</li>
-          <li class="prem">🏆 Profil mis en avant</li>
-        </ul>
-        <button class="btn-p" onclick="openPayModal('Trimestriel — 2 500 F CFA')">Souscrire</button>
-      </div>
-      <div class="pc">
         <div class="pplan">VIP Annuel</div>
         <div class="pamount"><span class="pcur">F</span>8 000</div>
         <div class="pper">CFA / an · −33%</div>
         <ul class="plist">
-          <li class="prem">🔥 Tout du Trimestriel</li>
+          <li class="prem">🔥 Tout du Mensuel</li>
           <li class="prem">👑 Badge VIP doré</li>
           <li class="prem">🏆 Profil TOP en 1er</li>
-          <li class="prem">🎟️ Événements ÉRÉNIK</li>
+          <li class="prem">🎯 Filtres avancés</li>
         </ul>
         <button class="btn-p" onclick="openPayModal('VIP Annuel — 8 000 F CFA')">Souscrire</button>
       </div>
@@ -1046,21 +887,76 @@ footer{background:var(--bg3);border-top:1px solid var(--border);padding:38px 20p
   </div>
 </section>
 
-<!-- ══ BANNIERE PUB 2 ══ -->
-<div id="pub-banner-2" style="background:var(--bg3);border-top:1px solid var(--border);padding:16px;text-align:center;display:none">
-  <div style="font-size:0.52rem;color:var(--muted);margin-bottom:6px;letter-spacing:0.1em">PARTENAIRE ÉRÉNIK</div>
-  <a id="pub-link-2" href="#" target="_blank">
-    <img id="pub-img-2" src="" alt="Partenaire" style="max-height:100px;max-width:100%;object-fit:contain;border:1px solid var(--border)">
-  </a>
-</div>
-
-<!-- ══ BANNIERE PUB 3 (entre profils et temoignages) ══ -->
-<div id="pub-banner-3" style="background:linear-gradient(135deg,#FFF5F7,#FFF8F0);border-top:1px solid var(--border);border-bottom:1px solid var(--border);padding:14px 16px;text-align:center;display:none">
-  <div style="font-size:0.52rem;color:var(--muted);margin-bottom:7px;letter-spacing:0.1em">NOS PARTENAIRES</div>
-  <a id="pub-link-3" href="#" target="_blank">
-    <img id="pub-img-3" src="" alt="Partenaire" style="max-height:90px;max-width:90%;object-fit:contain">
-  </a>
-</div>
+<!-- ══ PAIEMENTS ══ -->
+<section class="pay-section" id="paiements">
+  <div class="w">
+    <div class="sh">
+      <div class="slabel">Paiements</div>
+      <h2>Payez depuis <em>n'importe où en Afrique</em></h2>
+      <p>Toutes les méthodes Mobile Money africaines et mondiales.</p>
+    </div>
+    <div class="pay-country-group">
+      <div class="pay-country-title">🇨🇮 Côte d'Ivoire</div>
+      <div class="pay-grid">
+        <div class="pay-item" onclick="openPayModal('Wave CI')">📱 Wave</div>
+        <div class="pay-item" onclick="openPayModal('Orange Money CI')">📱 Orange Money</div>
+        <div class="pay-item" onclick="openPayModal('MTN MoMo CI')">📱 MTN MoMo</div>
+        <div class="pay-item" onclick="openPayModal('Moov Money CI')">📱 Moov Money</div>
+        <div class="pay-item" onclick="openPayModal('DJAMO CI')">📱 DJAMO</div>
+      </div>
+    </div>
+    <div class="pay-country-group">
+      <div class="pay-country-title">🇸🇳 Sénégal</div>
+      <div class="pay-grid">
+        <div class="pay-item" onclick="openPayModal('Wave Sénégal')">📱 Wave</div>
+        <div class="pay-item" onclick="openPayModal('Orange Money Sénégal')">📱 Orange Money</div>
+        <div class="pay-item" onclick="openPayModal('Free Money')">📱 Free Money</div>
+      </div>
+    </div>
+    <div class="pay-country-group">
+      <div class="pay-country-title">🇨🇲 Cameroun</div>
+      <div class="pay-grid">
+        <div class="pay-item" onclick="openPayModal('MTN MoMo Cameroun')">📱 MTN MoMo</div>
+        <div class="pay-item" onclick="openPayModal('Orange Money Cameroun')">📱 Orange Money</div>
+      </div>
+    </div>
+    <div class="pay-country-group">
+      <div class="pay-country-title">🇲🇱 Mali · 🇧🇫 Burkina · 🇳🇪 Niger · 🇬🇳 Guinée</div>
+      <div class="pay-grid">
+        <div class="pay-item" onclick="openPayModal('Orange Money')">📱 Orange Money</div>
+        <div class="pay-item" onclick="openPayModal('Moov Money')">📱 Moov Money</div>
+        <div class="pay-item" onclick="openPayModal('MTN MoMo')">📱 MTN MoMo</div>
+      </div>
+    </div>
+    <div class="pay-country-group">
+      <div class="pay-country-title">🇧🇯 Bénin · 🇹🇬 Togo · 🇨🇬 Congo · 🇨🇩 RDC · 🇬🇦 Gabon</div>
+      <div class="pay-grid">
+        <div class="pay-item" onclick="openPayModal('MTN MoMo')">📱 MTN MoMo</div>
+        <div class="pay-item" onclick="openPayModal('Airtel Money')">📱 Airtel Money</div>
+        <div class="pay-item" onclick="openPayModal('Orange Money')">📱 Orange Money</div>
+      </div>
+    </div>
+    <div class="pay-country-group">
+      <div class="pay-country-title">🇲🇦 Maroc · 🇩🇿 Algérie · 🇹🇳 Tunisie</div>
+      <div class="pay-grid">
+        <div class="pay-item" onclick="openPayModal('Orange Money Maroc')">📱 Orange Money</div>
+        <div class="pay-item" onclick="openPayModal('CIH Pay')">📱 CIH Pay</div>
+      </div>
+    </div>
+    <div class="pay-country-group">
+      <div class="pay-country-title">🌍 Diaspora & International</div>
+      <div class="pay-grid">
+        <div class="pay-item" onclick="openPayModal('PayPal')">💳 PayPal</div>
+        <div class="pay-item" onclick="openPayModal('Visa/Mastercard')">💳 Visa / Mastercard</div>
+        <div class="pay-item" onclick="openPayModal('WeChat Pay')">🌐 WeChat Pay</div>
+        <div class="pay-item" onclick="openPayModal('Virement bancaire')">🏦 Virement</div>
+      </div>
+    </div>
+    <div style="background:var(--card);border:1px solid var(--border);padding:13px;margin-top:6px;text-align:center;box-shadow:var(--shadow)">
+      <div style="font-size:0.7rem;color:var(--muted)">🔒 Paiements sécurisés via <strong style="color:var(--rose2)">PayDunya</strong> · SSL · Remboursement garanti</div>
+    </div>
+  </div>
+</section>
 
 <!-- ══ FOOTER ══ -->
 <footer>
@@ -1104,9 +1000,7 @@ footer{background:var(--bg3);border-top:1px solid var(--border);padding:38px 20p
       <span>© 2025 ÉRÉNIK · erenik.site · Tous droits réservés · 🏳️‍🌈 Inclusif & Sécurisé</span>
       <div class="flangs">
         <a href="#" onclick="document.getElementById('langScreen').classList.remove('hidden');return false">FR</a>
-        <a href="#" onclick="setLang('en','🇬🇧');return false">EN</a>
-        <a href="#" onclick="setLang('it','🇮🇹');return false">IT</a>
-        <a href="#" onclick="setLang('es','🇪🇸');return false">ES</a>
+        <a href="#">EN</a><a href="#">ES</a><a href="#">PT</a><a href="#">AR</a>
       </div>
     </div>
   </div>
@@ -1120,40 +1014,6 @@ footer{background:var(--bg3);border-top:1px solid var(--border);padding:38px 20p
   <button class="bn" id="bn-reg" onclick="showMainSite();go('inscription');act(this)"><span class="bn-i">✨</span>Rejoindre</button>
   <button class="bn" id="bn-premium" onclick="showMainSite();go('tarifs');act(this)"><span class="bn-i">💎</span>Premium</button>
 </nav>
-
-<!-- ══ MODAL CONNEXION ══ -->
-<div class="overlay" id="loginOverlay" onclick="if(event.target===this)closeLogin()">
-  <div class="modal">
-    <button class="mclose" onclick="closeLogin()">✕</button>
-    <div id="loginForm">
-      <h3>Connexion</h3>
-      <p class="msub">Accédez à votre compte ÉRÉNIK</p>
-      <div style="margin-bottom:10px">
-        <label style="display:block;font-size:0.59rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--muted);margin-bottom:5px">Email</label>
-        <input type="email" id="loginEmail" placeholder="votre@email.com" style="width:100%;padding:11px;background:var(--bg);border:1px solid var(--border);color:var(--text);font-size:0.86rem;outline:none">
-      </div>
-      <div style="margin-bottom:14px">
-        <label style="display:block;font-size:0.59rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--muted);margin-bottom:5px">Mot de passe</label>
-        <input type="password" id="loginPass" placeholder="Votre mot de passe" style="width:100%;padding:11px;background:var(--bg);border:1px solid var(--border);color:var(--text);font-size:0.86rem;outline:none">
-      </div>
-      <button onclick="doLogin()" style="width:100%;padding:13px;background:linear-gradient(135deg,var(--rose),var(--rose2));color:#fff;font-family:Jost,sans-serif;font-size:0.82rem;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;border:none;cursor:pointer;box-shadow:0 4px 14px rgba(181,68,90,0.3)">Se connecter →</button>
-      <div id="loginError" style="color:var(--red);font-size:0.74rem;text-align:center;margin-top:8px;display:none">Email ou mot de passe incorrect</div>
-      <p style="font-size:0.72rem;color:var(--muted);text-align:center;margin-top:12px">Pas encore membre ? <span onclick="closeLogin();go('inscription')" style="color:var(--rose2);cursor:pointer;text-decoration:underline">Créer un compte gratuit</span></p>
-    </div>
-    <div id="loggedInPanel" style="display:none;text-align:center;padding:10px 0">
-      <div style="font-size:2.5rem;margin-bottom:10px">👤</div>
-      <div id="loggedName" style="font-family:'Cormorant Garamond',serif;font-size:1.4rem;color:var(--text);margin-bottom:5px"></div>
-      <div id="loggedEmail" style="font-size:0.78rem;color:var(--muted);margin-bottom:8px"></div>
-      <div id="loggedAbonnement" style="display:inline-block;padding:4px 14px;background:rgba(181,68,90,0.08);border:1px solid var(--rose2);color:var(--rose2);font-size:0.72rem;letter-spacing:0.1em;text-transform:uppercase;margin-bottom:20px"></div>
-      <div style="margin-bottom:10px">
-        <label style="display:block;font-size:0.59rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--muted);margin-bottom:5px">Photo de profil</label>
-        <input type="file" id="photoInput" accept="image/*" onchange="uploadPhoto(this)" style="width:100%;padding:8px;background:var(--bg);border:1px solid var(--border);color:var(--text);font-size:0.78rem">
-      </div>
-      <div id="photoPreview" style="margin-bottom:14px"></div>
-      <button onclick="doLogout()" style="width:100%;padding:11px;background:transparent;border:1px solid var(--border);color:var(--muted);font-family:Jost,sans-serif;font-size:0.78rem;cursor:pointer">Se déconnecter</button>
-    </div>
-  </div>
-</div>
 
 <!-- ══ MODAL PAIEMENT ══ -->
 <div class="overlay" id="overlay" onclick="oClick(event)">
@@ -1223,10 +1083,14 @@ function showProfiles(){document.getElementById('chatScreen').classList.remove('
 
 // ═══ LANGUE ═══
 const T={
-  fr:{tagline:'Rencontres africaines & mondiales',h1:"L'amour africain<br>n'a pas <em>de frontières</em>",desc:'La plateforme de rencontres sérieuses pour les Africains et la diaspora. 100% Gratuit.',btn1:'✨ Créer mon profil',btn2:'💑 Découvrir →',join:'Rejoindre',login:'Connexion'},
-  en:{tagline:'African & global matchmaking',h1:"African love has<br><em>no borders</em>",desc:'The serious dating platform for Africans and the diaspora. 100% Free.',btn1:'✨ Create my profile',btn2:'💑 Discover →',join:'Join',login:'Login'},
-  it:{tagline:'Incontri africani e mondiali',h1:"L'amore africano<br>non ha <em>confini</em>",desc:'La piattaforma di incontri seri per africani e diaspora. 100% Gratuito.',btn1:'✨ Crea il mio profilo',btn2:'💑 Scopri →',join:'Unisciti',login:'Accedi'},
-  es:{tagline:'Encuentros africanos y mundiales',h1:"El amor africano<br>no tiene <em>fronteras</em>",desc:'La plataforma de citas serias para africanos y la diáspora. 100% Gratis.',btn1:'✨ Crear mi perfil',btn2:'💑 Descubrir →',join:'Unirse',login:'Iniciar sesión'},
+  fr:{tagline:'Rencontres africaines & mondiales',h1:"L'amour africain<br>n'a pas <em>de frontières</em>",desc:'La plateforme de rencontres sérieuses pour les Africains et la diaspora.'},
+  en:{tagline:'African & global matchmaking',h1:"African love has<br><em>no borders</em>",desc:'The serious dating platform for Africans and the diaspora.'},
+  es:{tagline:'Encuentros africanos',h1:"El amor africano<br>no tiene <em>fronteras</em>",desc:'La plataforma de citas serias para africanos.'},
+  it:{tagline:'Incontri africani',h1:"L'amore africano<br>non ha <em>confini</em>",desc:'La piattaforma di incontri per africani.'},
+  pt:{tagline:'Encontros africanos',h1:"O amor africano<br>não tem <em>fronteiras</em>",desc:'A plataforma de encontros para africanos.'},
+  ru:{tagline:'Африканские знакомства',h1:"Африканская любовь<br>не знает <em>границ</em>",desc:'Платформа знакомств для африканцев.'},
+  de:{tagline:'Afrikanisches Dating',h1:"Afrikanische Liebe<br>kennt keine <em>Grenzen</em>",desc:'Dating-Plattform für Afrikaner.'},
+  ar:{tagline:'مواعدة أفريقية',h1:"الحب الأفريقي<br>لا <em>حدود له</em>",desc:'منصة المواعدة للأفارقة.'},
 };
 function setLang(code,flag){
   document.getElementById('langScreen').classList.add('hidden');
@@ -1235,7 +1099,7 @@ function setLang(code,flag){
   document.getElementById('nav-tagline').textContent=t.tagline;
   document.getElementById('hero-h1').innerHTML=t.h1;
   document.getElementById('hero-desc').textContent=t.desc;
-  document.getElementById('html-root').setAttribute('dir','ltr');
+  document.getElementById('html-root').setAttribute('dir',code==='ar'?'rtl':'ltr');
 }
 
 // ═══ PROFILS ═══
@@ -1253,4 +1117,224 @@ function renderProfiles(){
   stack.innerHTML='';
   const p=profiles[profileIdx%profiles.length];
   const card=document.createElement('div');
- 
+  card.className='profile-card';
+  card.innerHTML=`
+    <div class="profile-img-placeholder">${p.em}</div>
+    ${p.flamme>88?`<div class="flamme-pct-badge">🔥 ${p.flamme}%</div>`:''}
+    <div class="profile-info">
+      <div class="profile-name">${p.name}${p.vip?'<span class="vip-badge">👑 VIP</span>':''}</div>
+      <div class="profile-meta">${p.online?'<span class="online-dot"></span>En ligne':'Vu récemment'} · ${p.age} ans · ${p.pays}</div>
+      <div style="font-size:0.7rem;color:var(--rose2);margin-bottom:8px">${p.obj}</div>
+      <div class="profile-bio">${p.bio}</div>
+      <div class="profile-tags">${p.tags.map(t=>`<span class="profile-tag">${t}</span>`).join('')}</div>
+      <div class="profile-actions">
+        <button class="btn-pass" onclick="nextProfile()">✕ Passer</button>
+        <button class="btn-like" onclick="likeProfile('${p.name}')">♥ Liker</button>
+        <button class="btn-msg-p" onclick="msgProfile('${p.name}')">💬 Écrire</button>
+      </div>
+    </div>
+  `;
+  stack.appendChild(card);
+  const nav=document.createElement('div');
+  nav.style.cssText='text-align:center;padding:9px;font-size:0.7rem;color:var(--muted)';
+  nav.textContent=`Profil ${(profileIdx%profiles.length)+1} / ${profiles.length}`;
+  stack.appendChild(nav);
+}
+function nextProfile(){profileIdx++;renderProfiles();showToast('Profil suivant →','info')}
+function likeProfile(name){
+  showToast('❤️ Vous avez liké '+name,'success');
+  setTimeout(()=>{if(Math.random()>0.45)showToast('🎉 Match ! '+name.split(' ')[0]+' vous a aussi liké !','success');nextProfile();},1300);
+}
+function msgProfile(name){showChat();setTimeout(()=>openConv(name,'💬',false),300)}
+
+// ═══ CHAT ═══
+const convData={
+  'Aminata K.':{em:'🌸',bg:'rgba(181,68,90,0.1)',online:true,flamme:true,msgs:[
+    {s:false,t:"Bonjour ! J'ai reçu votre Flamme Érénik ❤️",time:'14:28',read:true},
+    {s:true,t:"Bonjour ! Moi aussi ! 🔥",time:'14:31',read:true},
+    {s:false,t:'94% de compatibilité... 😄',time:'14:32',read:false},
+  ]},
+  'Kouassi M.':{em:'🌟',bg:'rgba(200,149,42,0.1)',online:true,flamme:false,msgs:[
+    {s:false,t:"Bonjour ! Je suis Kouassi 🇨🇮",time:'12:10',read:true},
+    {s:true,t:'Bonjour ! Ravi 😊',time:'12:12',read:true},
+  ]},
+  'Sophie R.':{em:'💜',bg:'rgba(123,79,166,0.1)',online:false,flamme:false,msgs:[
+    {s:true,t:'Bonjour Sophie ! 🌹',time:'Hier',read:true},
+    {s:false,t:'Bonjour ! 😊',time:'Hier',read:true},
+  ]},
+  'Fatou D.':{em:'🌍',bg:'rgba(42,157,143,0.1)',online:true,flamme:false,msgs:[
+    {s:false,t:'Bonjour ! 🌍',time:'Sam.',read:true},
+    {s:false,t:'Vous êtes de quel pays ?',time:'Sam.',read:false},
+  ]},
+};
+function openConv(name,em,isFlamme){
+  currentConv=name;
+  if(!convData[name])convData[name]={em:em||'💬',bg:'rgba(181,68,90,0.1)',online:true,flamme:isFlamme,msgs:[]};
+  document.getElementById('chatListWrap').style.display='none';
+  document.getElementById('chatWindow').classList.add('visible');
+  const conv=convData[name];
+  document.getElementById('convAvSm').textContent=conv.em;
+  document.getElementById('convAvSm').style.background=conv.bg;
+  document.getElementById('convNm').textContent=name+(conv.flamme?' 🔥':'');
+  const st=document.getElementById('convSt');
+  st.textContent=conv.online?'● En ligne':'◌ Vu récemment';
+  st.style.color=conv.online?'var(--green)':'var(--muted)';
+  renderMsgs(name);
+}
+function renderMsgs(name){
+  const conv=convData[name];
+  const msgs=conv?.msgs||[];
+  const container=document.getElementById('chatMessages');
+  let html='';
+  if(conv?.flamme)html+=`<div style="background:rgba(181,68,90,0.06);border:1px solid rgba(181,68,90,0.2);padding:9px 12px;text-align:center;font-size:0.77rem;margin-bottom:4px;color:var(--rose2)">🔥 <strong>Flamme Érénik à 94%</strong> avec ${name.split(' ')[0]} !</div>`;
+  msgs.forEach(m=>{
+    html+=`<div class="msg msg-${m.s?'sent':'recv'}"><div class="msg-bubble">${m.t}</div><div class="msg-time">${m.time}${m.s?` <span class="msg-read-tick">${m.read?'✓✓':'✓'}</span>`:''}</div></div>`;
+  });
+  container.innerHTML=html;
+  container.scrollTop=container.scrollHeight;
+}
+function closeConv(){
+  document.getElementById('chatListWrap').style.display='flex';
+  document.getElementById('chatListWrap').style.flexDirection='column';
+  document.getElementById('chatWindow').classList.remove('visible');
+  currentConv=null;
+}
+function addEmoji(e){const i=document.getElementById('msgInput');i.value+=e;i.focus()}
+function sendMsg(){
+  const inp=document.getElementById('msgInput');
+  const text=inp.value.trim();
+  if(!text||!currentConv)return;
+  msgCount++;
+  if(!isPremium&&msgCount>10){showToast('💎 Limite gratuite atteinte. Passez Premium !','error');openPayModal('Premium');return}
+  if(!convData[currentConv])convData[currentConv]={em:'💬',bg:'rgba(181,68,90,0.1)',online:true,flamme:false,msgs:[]};
+  const now=new Date();
+  const time=now.getHours()+':'+String(now.getMinutes()).padStart(2,'0');
+  convData[currentConv].msgs.push({s:true,t:text,time,read:false});
+  inp.value='';
+  renderMsgs(currentConv);
+  document.getElementById('msgCountDisplay').textContent=`${msgCount}/10`;
+  document.getElementById('limitFill').style.width=(Math.min(msgCount,10)/10*100)+'%';
+  setTimeout(()=>{
+    const r=["Merci 😊","C'est gentil ❤️","Je vous lis avec plaisir !","Vous êtes bien 💕","J'aime votre sincérité 🌹"];
+    convData[currentConv].msgs.push({s:false,t:r[Math.floor(Math.random()*r.length)],time:new Date().getHours()+':'+String(new Date().getMinutes()).padStart(2,'0'),read:false});
+    renderMsgs(currentConv);
+  },1000+Math.random()*1000);
+}
+
+// ═══ SUPABASE ═══
+async function supaInsert(table,data){
+  try{
+    const r=await fetch(`${SUPA_URL}/rest/v1/${table}`,{method:'POST',headers:{'Content-Type':'application/json','apikey':SUPA_KEY,'Authorization':'Bearer '+SUPA_KEY,'Prefer':'return=minimal'},body:JSON.stringify(data)});
+    return r.ok;
+  }catch(e){return false;}
+}
+async function supaGetAll(table){
+  try{
+    const r=await fetch(`${SUPA_URL}/rest/v1/${table}?select=*&order=date_inscription.desc`,{headers:{'apikey':SUPA_KEY,'Authorization':'Bearer '+SUPA_KEY}});
+    if(r.ok)return await r.json();return[];
+  }catch(e){return[];}
+}
+
+// ═══ INSCRIPTION ═══
+async function handleReg(){
+  const p=document.getElementById('prenom').value.trim();
+  const n=document.getElementById('nom').value.trim();
+  const e=document.getElementById('email').value.trim();
+  const m=document.getElementById('mdp').value.trim();
+  const o=document.getElementById('orient').value;
+  const a=document.getElementById('age').value;
+  const pays=document.getElementById('pays').value;
+  const obj=document.getElementById('objectif').value;
+  const bio=document.getElementById('bio').value.trim();
+  if(!p||!n||!e||!m||!o||!a||!pays||!obj){showToast('⚠️ Remplissez tous les champs obligatoires.','error');return}
+  if(m.length<8){showToast('⚠️ Mot de passe minimum 8 caractères.','error');return}
+  if(parseInt(a)<18){showToast('⚠️ Vous devez avoir au moins 18 ans.','error');return}
+  const btn=document.getElementById('btnReg');
+  btn.disabled=true;
+  btn.innerHTML='<span class="spin"></span>Création du profil...';
+  await supaInsert('membres',{prenom:p,nom:n,email:e,orientation:o,age:parseInt(a),pays:pays,objectif:obj,bio:bio,abonnement:'gratuit',statut:'actif'});
+  showToast(`🎉 Bienvenue sur ÉRÉNIK, ${p} ! Profil créé.`,'success');
+  setTimeout(()=>{showMainSite();go('tarifs')},2200);
+  btn.disabled=false;
+  btn.innerHTML='Créer mon profil gratuit ♥';
+}
+
+// ═══ PAIEMENTS ═══
+function openPayModal(plan){document.getElementById('mlabel').textContent='Plan : '+plan;document.getElementById('overlay').classList.add('on')}
+function closeM(){document.getElementById('overlay').classList.remove('on')}
+function oClick(e){if(e.target===document.getElementById('overlay'))closeM()}
+
+async function pay(method){
+  closeM();
+  const plan=document.getElementById('mlabel').textContent.replace('Plan : ','');
+  const montant=plan.includes('500')?500:plan.includes('8000')?8000:1000;
+  if(!method.includes('PayPal')&&!method.includes('Visa')&&!method.includes('Mastercard')){
+    showPayInstr(method,montant);return;
+  }
+  showToast('Redirection vers PayDunya...','info');
+  try{
+    const r=await fetch('https://app.paydunya.com/api/v1/checkout-invoice/create',{method:'POST',headers:{'Content-Type':'application/json','PAYDUNYA-MASTER-KEY':PD_PRIVATE,'PAYDUNYA-PUBLIC-KEY':PD_PUBLIC,'PAYDUNYA-TOKEN':PD_TOKEN},body:JSON.stringify({invoice:{items:{item_0:{name:'ERENIK Premium',quantity:1,unit_price:montant,total_price:montant}},total_amount:montant,description:'Abonnement ERENIK'},store:{name:'ERENIK',phone:WAVE_NUM,website_url:'https://erenik.site'},actions:{cancel_url:'https://erenik.site',return_url:'https://erenik.site?payment=success'}})});
+    const d=await r.json();
+    if(d.response_code==='00'&&d.invoice_url){window.open(d.invoice_url,'_blank');showToast('Page de paiement ouverte !','success');}
+    else showPayInstr(method,montant);
+  }catch(e){showPayInstr(method,montant);}
+}
+
+function showPayInstr(method,montant){
+  document.getElementById('overlay').classList.add('on');
+  document.querySelector('.modal').innerHTML=`
+    <button class="mclose" onclick="closeM()">✕</button>
+    <h3 style="color:var(--text)">Paiement Mobile Money</h3>
+    <p class="msub">${montant} F CFA — Premium ÉRÉNIK</p>
+    <div style="background:rgba(181,68,90,0.04);border:1px solid rgba(181,68,90,0.2);padding:16px;margin-bottom:14px;border-radius:2px">
+      <div style="font-size:0.65rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--rose2);margin-bottom:10px">📱 Instructions</div>
+      <div style="font-size:0.9rem;line-height:2.1;color:var(--text)">
+        <strong style="color:var(--rose2)">Étape 1</strong> — Envoyez <strong>${montant} F CFA</strong><br>
+        via ${method} au numéro :<br>
+        <strong style="font-size:1.3rem;color:var(--rose2);letter-spacing:0.05em">${WAVE_NUM}</strong><br>
+        <strong style="color:var(--rose2)">Étape 2</strong> — Mentionnez :<br>
+        <strong>ÉRÉNIK + votre prénom</strong><br>
+        <strong style="color:var(--rose2)">Étape 3</strong> — Premium activé en <strong>2h</strong> ✅
+      </div>
+    </div>
+    <button onclick="confirmPay()" style="width:100%;padding:13px;background:linear-gradient(135deg,var(--rose),var(--rose2));color:#fff;font-family:Jost,sans-serif;font-size:0.84rem;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;border:none;cursor:pointer;box-shadow:0 4px 14px rgba(181,68,90,0.3)">✓ J'ai payé — Activer mon Premium</button>
+    <p style="font-size:0.64rem;color:var(--muted);margin-top:10px;text-align:center">🔒 Support WhatsApp : ${WAVE_NUM}</p>
+  `;
+}
+function confirmPay(){closeM();isPremium=true;showToast('✅ Merci ! Premium activé dans 2h. WhatsApp : '+WAVE_NUM,'success')}
+
+// ═══ ADMIN ═══
+function openAdminPanel(){document.getElementById('adminScreen').classList.add('visible');document.getElementById('adminLoginWrap').style.display='block';document.getElementById('adminDash').style.display='none'}
+function adminLogin(){
+  const e=document.getElementById('aEmail').value;
+  const p=document.getElementById('aPass').value;
+  if(e===ADMIN_CFG.email&&p===ADMIN_CFG.password){document.getElementById('adminLoginWrap').style.display='none';document.getElementById('adminDash').style.display='block';loadAdminData();}
+  else document.getElementById('aError').style.display='block';
+}
+function switchTab(id,el){document.querySelectorAll('.a-tab').forEach(t=>t.classList.remove('on'));document.querySelectorAll('.a-tab-content').forEach(c=>c.classList.remove('on'));el.classList.add('on');document.getElementById('tab-'+id).classList.add('on')}
+
+async function loadAdminData(){
+  const membres=await supaGetAll('membres');
+  const total=membres.length;
+  const premium=membres.filter(m=>m.abonnement!=='gratuit').length;
+  const today=new Date().toDateString();
+  const newToday=membres.filter(m=>new Date(m.date_inscription).toDateString()===today).length;
+  document.getElementById('aTot').textContent=total||'0';
+  document.getElementById('aPrem').textContent=premium||'0';
+  document.getElementById('aToday').textContent=newToday||'0';
+  document.getElementById('aRev').textContent=(premium*1000).toLocaleString()+' F';
+  const paysCounts={};
+  membres.forEach(m=>{const p=(m.pays||'Inconnu').split(' ').slice(1).join(' ').trim()||'Inconnu';paysCounts[p]=(paysCounts[p]||0)+1;});
+  const chartData=Object.entries(paysCounts).sort((a,b)=>b[1]-a[1]).slice(0,5);
+  const maxVal=chartData[0]?chartData[0][1]:1;
+  document.getElementById('countryChart').innerHTML=chartData.length?chartData.map(([pays,count])=>`
+    <div style="display:flex;align-items:center;gap:9px;margin-bottom:7px;font-size:0.73rem">
+      <div style="min-width:80px;color:var(--muted)">${pays}</div>
+      <div style="flex:1;height:20px;background:var(--bg2);overflow:hidden">
+        <div style="height:100%;width:${Math.round(count/maxVal*100)}%;background:linear-gradient(90deg,var(--rose),var(--rose2));display:flex;align-items:center;padding-left:6px;color:#fff;font-size:0.65rem;font-weight:600;min-width:24px">${count}</div>
+      </div>
+    </div>`).join(''):'<div style="color:var(--muted);font-size:0.8rem;text-align:center;padding:12px">Partagez ÉRÉNIK pour avoir vos premiers membres !</div>';
+  document.getElementById('membersList').innerHTML=membres.length?membres.map(m=>`
+    <div class="mcard">
+      <div class="mcard-name">${m.prenom||''} ${m.nom||''}${m.abonnement!=='gratuit'?'<span class="vip-badge">💎</span>':''}</div>
+      <div class="mcard-info">📧 ${m.email||'—'} · ${m.pays||'—'} · ${m.age||'—'} ans<br>${m.orientation||'—'} · 📅 ${m.date_inscription?new Date(m.date_inscription).toLocaleDateString(

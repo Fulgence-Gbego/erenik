@@ -1,0 +1,27 @@
+{
+  "name": "ÉRÉNIK — Rencontres Africaines",
+  "short_name": "ÉRÉNIK",
+  "description": "La plateforme de rencontres amoureuses africaines et mondiales. 100% Gratuit.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#FAFAF8",
+  "theme_color": "#B5445A",
+  "orientation": "portrait",
+  "icons": [
+    {
+      "src": "https://via.placeholder.com/192x192/B5445A/FFFFFF?text=E",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "https://via.placeholder.com/512x512/B5445A/FFFFFF?text=E",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ],
+  "categories": ["social", "lifestyle"],
+  "lang": "fr",
+  "dir": "ltr"
+}
